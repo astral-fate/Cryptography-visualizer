@@ -74,6 +74,11 @@
             border-bottom: 1px solid #eee;
             padding-bottom: 10px;
         }
+        .input-section textarea {
+            font-family: monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
@@ -140,6 +145,7 @@
                     <div class="example-buttons">
                         <button type="button" class="btn btn-info btn-sm" onclick="visualizeExample1()">Example 1: Key Gen</button>
                         <button type="button" class="btn btn-info btn-sm" onclick="visualizeExample2()">Example 2: Encrypt w/ Keys</button>
+                        <button type="button" class="btn btn-info btn-sm" onclick="visualizeExample3()">Example 3: Custom Key Gen</button> <!-- Added Example 3 button -->
                     </div>
                 </div>
             </form>
@@ -147,7 +153,7 @@
 
         <!-- Input Section: Key Generation Only -->
         <div class="input-section">
-            <h4>Key Generation Only</h4>
+            <h4>Key Generation Only (Standard P10/P8)</h4>
             <form id="sdes-keygen-form">
                 <div class="form-group">
                     <label for="keygen-key">Key (10 bits):</label>
@@ -177,6 +183,26 @@
             </form>
         </div>
 
+        <!-- Input Section: Key Generation with Custom Permutations -->
+        <div class="input-section">
+            <h4>Key Generation with Custom Permutations</h4>
+            <form id="sdes-custom-keygen-form">
+                <div class="form-group">
+                    <label for="custom-keygen-key">Key (10 bits):</label>
+                    <input type="text" class="form-control" id="custom-keygen-key" name="custom-keygen-key" maxlength="10" pattern="[01]{10}" title="Enter 10 binary digits (0 or 1)" required value="1100011110">
+                </div>
+                <div class="form-group">
+                    <label for="custom-p10">P10 Permutation (10 numbers, 1-10, space/comma separated):</label>
+                    <textarea class="form-control" id="custom-p10" name="custom-p10" rows="1" title="Enter 10 numbers from 1 to 10, separated by spaces or commas" required>3 5 2 7 4 10 1 9 8 6</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="custom-p8">P8 Permutation (8 numbers, 1-10, space/comma separated):</label>
+                    <textarea class="form-control" id="custom-p8" name="custom-p8" rows="1" title="Enter 8 numbers from 1 to 10, separated by spaces or commas" required>6 3 7 4 8 5 10 9</textarea>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="visualizeKeyGenerationCustomPermutations()">Visualize Custom Key Generation</button>
+            </form>
+        </div>
+
 
         <!-- Visualization Section -->
         <div id="visualization-area" class="mt-4">
@@ -194,18 +220,18 @@
                  <div class="card-body">
                     <h5 class="card-title">Step 2: Key Generation</h5>
                      <div class="step-detail"><span class="label">Initial 10-bit Key:</span><span class="binary-visualization" id="kgen-input-key"></span></div>
-                     <div class="step-detail"><span class="label">Permutation P10:</span><code>[3, 5, 2, 7, 4, 10, 1, 9, 8, 6]</code></div>
+                     <div class="step-detail"><span class="label">Permutation P10:</span><code id="kgen-p10-table">[3, 5, 2, 7, 4, 10, 1, 9, 8, 6]</code></div> <!-- Placeholder for P10 table -->
                      <div class="step-detail"><span class="label">After P10:</span><span class="binary-visualization" id="kgen-p10-output"></span></div>
                      <div class="step-detail"><span class="label">Left Shift 1 (LS-1) on left 5 bits:</span><span class="binary-visualization" id="kgen-ls1-left"></span></div>
                      <div class="step-detail"><span class="label">Left Shift 1 (LS-1) on right 5 bits:</span><span class="binary-visualization" id="kgen-ls1-right"></span></div>
                      <div class="step-detail"><span class="label">Combined after LS-1:</span><span class="binary-visualization" id="kgen-ls1-combined"></span></div>
-                     <div class="step-detail"><span class="label">Permutation P8:</span><code>[6, 3, 7, 4, 8, 5, 10, 9]</code></div>
+                     <div class="step-detail"><span class="label">Permutation P8:</span><code id="kgen-p8-table">[6, 3, 7, 4, 8, 5, 10, 9]</code></div> <!-- Placeholder for P8 table -->
                      <div class="step-detail"><span class="label"><strong>Subkey K1:</strong></span><span class="binary-visualization" id="kgen-k1"></span></div>
                      <hr>
                      <div class="step-detail"><span class="label">Left Shift 2 (LS-2) on LS-1 left bits:</span><span class="binary-visualization" id="kgen-ls2-left"></span></div>
                      <div class="step-detail"><span class="label">Left Shift 2 (LS-2) on LS-1 right bits:</span><span class="binary-visualization" id="kgen-ls2-right"></span></div>
                      <div class="step-detail"><span class="label">Combined after LS-2:</span><span class="binary-visualization" id="kgen-ls2-combined"></span></div>
-                     <div class="step-detail"><span class="label">Permutation P8:</span><code>[6, 3, 7, 4, 8, 5, 10, 9]</code></div>
+                     <div class="step-detail"><span class="label">Permutation P8:</span><code id="kgen-p8-table-k2">[6, 3, 7, 4, 8, 5, 10, 9]</code></div> <!-- Placeholder for P8 table (K2) -->
                      <div class="step-detail"><span class="label"><strong>Subkey K2:</strong></span><span class="binary-visualization" id="kgen-k2"></span></div>
                  </div>
             </div>
@@ -277,7 +303,7 @@
                      <h4 class="card-title">Result</h4>
                      <div class="step-detail"><span class="label">Plaintext:</span><span class="binary-visualization" id="result-plaintext"></span></div>
                      <div class="step-detail"><span class="label">Key:</span><span class="binary-visualization" id="result-key"></span></div>
-                     <div class="step-detail"><span class="label">Ciphertext:</span><span class="binary-visualization" id="result-ciphertext"></span></div>
+                     <div class="step-detail"><span class="label">Ciphertext / Keys:</span><span id="result-ciphertext"></span></div> <!-- Modified to handle both ciphertext and key results -->
                  </div>
             </div>
         </div>
