@@ -59,6 +59,21 @@
             margin-top: 1rem;
             margin-bottom: 1rem;
         }
+        .example-buttons button {
+            margin-left: 10px;
+        }
+        .input-section {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .input-section h4 {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -98,16 +113,16 @@
     <div class="container layout_padding">
         <div class="heading_container heading_center">
             <h2>
-                S-DES <span>Encryption Visualization</span>
+                S-DES <span>Visualization</span>
             </h2>
             <p>
                 Visualize the Simplified Data Encryption Standard (S-DES) algorithm step by step.
             </p>
         </div>
 
-        <!-- Input Section -->
+        <!-- Input Section: Full Encryption -->
         <div class="input-section">
-            <h4>Inputs</h4>
+            <h4>Full Encryption (Plaintext + 10-bit Key)</h4>
             <form id="sdes-form">
                 <div class="form-group">
                     <label for="plaintext">Plaintext (8 bits):</label>
@@ -117,14 +132,55 @@
                     <label for="key">Key (10 bits):</label>
                     <input type="text" class="form-control" id="key" name="key" maxlength="10" pattern="[01]{10}" title="Enter 10 binary digits (0 or 1)" required value="1100101101">
                 </div>
-                <button type="button" class="btn btn-primary" onclick="startSdesVisualization()">Encrypt</button>
-                 <button type="button" class="btn btn-secondary" onclick="resetVisualization()">Reset</button>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <button type="button" class="btn btn-primary" onclick="startSdesVisualization()">Encrypt</button>
+                        <button type="button" class="btn btn-secondary" onclick="resetVisualization()">Reset All</button>
+                    </div>
+                    <div class="example-buttons">
+                        <button type="button" class="btn btn-info btn-sm" onclick="visualizeExample1()">Example 1: Key Gen</button>
+                        <button type="button" class="btn btn-info btn-sm" onclick="visualizeExample2()">Example 2: Encrypt w/ Keys</button>
+                    </div>
+                </div>
             </form>
         </div>
 
+        <!-- Input Section: Key Generation Only -->
+        <div class="input-section">
+            <h4>Key Generation Only</h4>
+            <form id="sdes-keygen-form">
+                <div class="form-group">
+                    <label for="keygen-key">Key (10 bits):</label>
+                    <input type="text" class="form-control" id="keygen-key" name="keygen-key" maxlength="10" pattern="[01]{10}" title="Enter 10 binary digits (0 or 1)" required value="1010000010">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="visualizeKeyGenerationOnly()">Visualize Key Generation</button>
+            </form>
+        </div>
+
+        <!-- Input Section: Encryption with Pre-computed Keys -->
+        <div class="input-section">
+            <h4>Encryption with Pre-computed Keys</h4>
+            <form id="sdes-encrypt-keys-form">
+                <div class="form-group">
+                    <label for="encrypt-plaintext">Plaintext (8 bits):</label>
+                    <input type="text" class="form-control" id="encrypt-plaintext" name="encrypt-plaintext" maxlength="8" pattern="[01]{8}" title="Enter 8 binary digits (0 or 1)" required value="11011001">
+                </div>
+                <div class="form-group">
+                    <label for="encrypt-k1">Subkey K1 (8 bits):</label>
+                    <input type="text" class="form-control" id="encrypt-k1" name="encrypt-k1" maxlength="8" pattern="[01]{8}" title="Enter 8 binary digits (0 or 1)" required value="10100010">
+                </div>
+                 <div class="form-group">
+                    <label for="encrypt-k2">Subkey K2 (8 bits):</label>
+                    <input type="text" class="form-control" id="encrypt-k2" name="encrypt-k2" maxlength="8" pattern="[01]{8}" title="Enter 8 binary digits (0 or 1)" required value="10011001">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="visualizeEncryptionWithKeys()">Visualize Encryption (with Keys)</button>
+            </form>
+        </div>
+
+
         <!-- Visualization Section -->
         <div id="visualization-area" class="mt-4">
-            <h4>Visualization Steps</h4>
+            <h4 id="visualization-title">Visualization Steps</h4>
             <!-- Steps will be dynamically added here by JavaScript -->
             <div id="step-initial-permutation" class="card mb-3" style="display: none;">
                 <div class="card-body">
