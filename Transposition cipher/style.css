@@ -1,0 +1,226 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #1A106A;
+  color: #fff;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+/* spilt the page */
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 10%;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: #ffffff;
+}
+
+.right {
+  right: 0;
+  background-color: #ffffff;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+.container {
+  text-align: center;
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 8px;
+  /*box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);*/
+}
+
+h1 {
+  margin-top: 0;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+input[type="text"],
+textarea {
+  width: calc(100% - 22px);
+  margin: 10px 0;
+  padding: 5px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  padding: 8px 20px;
+  margin: 10px;
+  cursor: pointer;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.icon {
+  padding: 4px 10px;
+  margin: 5px;
+  cursor: pointer;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #231a6f;
+  color: #fff;
+}
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+}
+
+#matrix {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.column {
+  margin: 0 5px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.wrapper {
+  width: 50vw;
+  /* unfortunately width has to be set to some hard value */
+  display: flex;
+}
+
+.slide {
+  width: 0;
+}
+
+.content {
+  width: 50vw;
+  height: 100%;
+  /* this is optional if you want every slide to have same height as the highest one */
+}
+
+/* Additional styling */
+
+
+.wrapper {
+  margin: 0 auto;
+  background-color: white;
+}
+
+/* span {
+  background-color: rgb(113, 239, 235);
+  text-align: center;
+  line-height: 4rem;
+  width: 4rem;
+  border-radius: 8rem;
+  color: #4d4747;
+  font-size: 2rem;
+} */
+
+.content {
+  padding: 30px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/*.content3,
+.content5,
+.content6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E0E0E0;
+}*/
+
+.content2 {
+  background-image: url(img3.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#i_1:checked~.wrapper .content1,
+#i_2:checked~.wrapper .content2,
+#i_3:checked~.wrapper .content3,
+#i_4:checked~.wrapper .content4{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+label {
+  color: #000000;
+  transition-duration: .6s;
+  cursor: pointer;
+}
+
+#i_1:checked~.controls label[for="i_1"],
+#i_2:checked~.controls label[for="i_2"],
+#i_3:checked~.controls label[for="i_3"],
+#i_4:checked~.controls label[for="i_4"]{
+  color: rgb(113, 239, 235);
+}
+
+.input-group,
+.textarea-group {
+display: flex;
+align-items: center;
+margin-bottom: 10px;
+}
+
+.input-group input,
+.textarea-group textarea {
+flex: 1;
+margin-right: 10px;
+}
+
+.button-group button {
+display: flex;
+align-items: center;
+}
+
+.button-group button i {
+margin-right: 5px;
+}

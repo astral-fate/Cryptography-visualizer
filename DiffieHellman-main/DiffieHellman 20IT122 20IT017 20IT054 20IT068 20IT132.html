@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <title>Diffie-Hellman Key Exchange</title>
+  <link rel="stylesheet" href="./style.css" type="text/css">
+<!-- bootstrap core css -->
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+
+<!-- fonts style -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!--owl slider stylesheet -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+<!-- font awesome style -->
+<link href="../css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="../css/style.css" rel="stylesheet" />
+<!-- responsive style -->
+<link href="../css/responsive.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+
+ <div class="hero_area" style="background-color: #231a6f;">
+
+     <div class="hero_bg_box">
+       <div class="bg_img_box">
+         <img src="../images/hero-1.jpg" alt="">
+       </div>
+     </div>
+
+   <!-- header section strats -->
+   <header class="header_section" >
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="/index.html">
+          <span>
+            Xipher
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav  ">
+            <li class="nav-item ">
+              <a class="nav-link" href="../index.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#Aboutsec"> About</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="../algorthims.html">Algorithms <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Help.html">Help</a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+
+   <!-- header section strats -->
+   <header style="background-color: #ffffff; height:90px;" class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+
+     
+        <a class="one" href="../Asymmetric ciphers/ascipher.html"><h6>Asymmetric </h6></a>
+        <h5>&emsp;➜&emsp;</h5>
+        <a class="one" href="./DiffieHellman 20IT122 20IT017 20IT054 20IT068 20IT132.html"><h6>Diffie-Hellman</h6></a>
+
+
+      </nav></div></header>
+<body>
+  <div class="container">
+    <div class="split right">
+      <div class="container">
+        <img src="/Untitled design (1).png" style="width: 700px; height: 500px;" />
+  
+  
+            <div class="bottom-left"><label for="primeNumber" style="font-size: 10px;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              font-weight: bold;">Enter a prime number q:</label>
+              <input type="number" id="primeNumber" onchange="populatePrimitiveRootsSelect()" style="width: 90px; height:25px;"></div>
+  
+           <div class="centered1"><div class="popup" onclick="myFunction()"><span class="popuptext" id="myPopup">You must enter prime q to generate the primitive root (a) list</span>
+            <label for="primitiveRootSelect" style="font-size: 10px;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            font-weight: bold;">Choose a primitive root (α):</label>
+            <select id="primitiveRootSelect"></select></div> </div> 
+  
+              <div class="top-left"><p  style="font-size: 10px;
+                margin: 0;
+                padding: 0;
+                text-align: left;
+                font-weight: bold;"><br>Enter bob private key (X<sub>B</sub> &lt; q):</p></div>
+              
+            <div class="centered3"> 
+              <input type="number" style="width: 90px; height:25px;" id="bobPrivateKey"></div> 
+ 
+            <div class="centered4"><p style="font-size: 10px;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              font-weight: bold;" for="alicePrivateKey">Enter Alice private key (X<sub>A</sub> &lt; q):</p></div>
+            <div class="top-right"><input style="width: 90px; height:25px;" type="number" id="alicePrivateKey"></div>
+  
+            <div class="top-right1"><div style="font-size: 10px;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              font-weight: bold;" id="output1"></div></div>
+            
+            <div class="centered2"><button style="width: 120px; height:20px; font-size: 10px;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              font-weight: bold;"  onclick="performDiffieHellman()">Perform Diffie-Hellman</button></div>
+   
+            <div class="bottom-right"><div style="font-size: 10px;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              font-weight: bold;" id="output2"></div></div>
+   
+            <div class="bottom-right2"><div style="font-size: 10px;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              font-weight: bold;" id="output3"></div></div>
+  
+            <div class="bottom-right1"><div style="font-size: 10px;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              font-weight: bold;" id="output4"></div></div>
+            
+            <div class="bottom-right3"><div style="font-size: 10px;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              font-weight: bold;" id="output"></div> </div>
+            <div class="bottom-right4"><div style="font-size: 10px;
+              margin: 0;
+              padding: 0;
+              text-align: left;
+              font-weight: bold;" id="output0"></div> </div>
+  
+    
+            
+        </div>
+     
+        </div></div>
+
+    <div class="split left" style="top: 20%; text-align: left;">
+        <div class="centered">
+            <!-- slider section -->
+    
+    <div class="controls" style="font-weight: bold;"><br><br><br><br><br><br><br><br><br>
+        <label for="i_1">| DESCRIPTION | </label>
+        <label for="i_2">ALGORITHM STEPS | </label>
+        <label for="i_3">EXAMPLE | </label>
+        
+    </div><br>
+    <input type="radio" name="switch" id="i_1" checked>
+    <input type="radio" name="switch" id="i_2">
+    <input type="radio" name="switch" id="i_3">
+
+    <div class="wrapper">
+
+        <div class="slide">
+            <div class="content content1" style="text-align: left;"> 
+             <p>
+              Diffie-Hellman key exchange is a fundamental algorithm for secure cryptographic key sharing. It capitalizes on the complexity of discrete logarithms, making it impractical for attackers to deduce shared secret keys. Users generate private and public keys, exchange public keys, and compute a shared secret key, ensuring robust security in various cryptographic applications.
+             </p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="content content2" style="text-align: left;">
+             
+
+              <img src="../images/as.PNG" style="height: 75%; weight:55%;">
+
+    
+  </div></div>
+
+  <div class="slide">
+    <div class="content content3" style="text-align: left;">
+      <h2>Diffie-Hellman Key Exchange Example</h2>
+
+
+  <div>
+    <p>In this example of the Diffie-Hellman key exchange:</p>
+
+    <ul>
+      <li>Both Alice and Bob share a prime number q = 353 and a primitive root α = 3.</li>
+      <li>Alice selects a private key X<sub>A</sub> = 97 and computes her public key Y<sub>A</sub> = 3<sup>97</sup> mod 353, resulting in Y<sub>A</sub> = 40.</li>
+      <li>Bob selects a private key X<sub>B</sub> = 233 and computes his public key Y<sub>B</sub> = 3<sup>233</sup> mod 353, resulting in Y<sub>B</sub> = 248.</li>
+      <li>After exchanging public keys, both Alice and Bob independently compute a shared secret key using the received public key and their own private key:</li>
+      <ul>
+        <li>Alice calculates K = (Y<sub>B</sub>)<sup>X<sub>A</sub></sup> mod 353, resulting in K = 160.</li>
+        <li>Bob calculates K = (Y<sub>A</sub>)<sup>X<sub>B</sub></sup> mod 353, also resulting in K = 160.</li>
+      </ul>
+    </ul>
+  </div>
+     
+
+     
+
+
+</div></div>
+
+  <script src="./script.js">
+
+    </script>
+
+</body>
+</html>

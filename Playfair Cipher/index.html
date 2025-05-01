@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Playfair Cipher</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- bootstrap core css -->
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+
+<!-- fonts style -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!--owl slider stylesheet -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+<!-- font awesome style -->
+<link href="../css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="../css/style.css" rel="stylesheet" />
+<!-- responsive style -->
+<link href="../css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+
+ <div class="hero_area">
+
+     <div class="hero_bg_box">
+       <div class="bg_img_box">
+         <img src="../images/hero-1.jpg" alt="">
+       </div>
+     </div>
+
+   <!-- header section strats -->
+   <header class="header_section" >
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="/index.html">
+          <span>
+            Xipher
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav  ">
+            <li class="nav-item ">
+              <a class="nav-link" href="../index.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#Aboutsec"> About</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="../algorthims.html">Algorithms <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Help.html">Help</a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+
+        <!-- header section strats -->
+  <header style="background-color: #ffffff;" class="subhead">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+
+      
+        <a class="one" href="../Symmetric ciphers/index.html"><h6>Symmetric</h6></a>
+        <h5>&emsp;➜&emsp;</h5>
+        <a class="one" href="../Classical Encryption Techniques/index.html"><h6>Classical</h6></a>
+        <h5>&emsp;➜&emsp;</h5>
+        <a class="one" href="../Substitution Techniques/index.html"><h6>Substitution</h6></a>
+        <h5>&emsp;➜&emsp;</h5>
+        <a class="one" href="./index.html"><h6>Playfair</h6></a>
+
+
+      </nav></div></header>
+    
+    <div class="split right">
+        <div class="centered">
+            <div class="container">
+             <!-- <button class="fa-adjust" onclick="myFunction()"></button> -->
+              
+            
+            <h1 style="color: black;">Playfair Cipher</h1>
+            
+            <label for="key">Enter Encryption/Decryption Key:</label>
+            <div class="input-group">
+              <input type="text" id="key" placeholder="Enter key" oninput="generateMatrix(this.value)">
+              <div class="button-group">
+                <!-- <button onclick="resetKey()"><i class="fas fa-undo"></i></button>
+                <button onclick="copyKey()"><i class="far fa-copy"></i></button> -->
+              </div>
+            </div>
+            
+            
+            <div class="textarea-group">
+              <textarea id="plaintext" placeholder="Enter text"></textarea>
+              <div class="button-group">
+                <button class="icon" onclick="resetPlaintext()"><i class="fas fa-undo"></i></button>
+                <button class="icon" onclick="copyPlaintext()"><i class="far fa-copy"></i></button>
+              </div>
+            </div>
+            
+            
+            <div class="textarea-group">
+              <textarea id="ciphertext" placeholder="Output" ></textarea>
+              <div class="button-group">
+                <button class="icon" onclick="resetCiphertext()"><i class="fas fa-undo"></i></button>
+                <button class="icon" onclick="copyCiphertext()"><i class="far fa-copy"></i></button>
+              </div>
+            </div>
+            
+            <button onclick="encrypt()">Encrypt</button>
+            
+            <button onclick="decrypt()">Decrypt</button>
+           
+    
+  
+    <div id="playfairGrid"></div>
+    <div id="stepDisplay"></div>
+
+        </div></div></div>
+
+        <div class="split left" style="text-align: left;">
+            <div class="centered">
+                  <!-- slider section -->
+                <!--   <button class="fa-adjust" onclick="myFunction()"></button> -->
+                  
+        <div class="controls">
+          <label for="i_1">| DESCRIPTION | </label>
+          <label for="i_2">ALGORITHM STEPS | </label>
+          <label for="i_3">EXAMPLE | </label>          
+      </div>
+
+            <input type="radio" name="switch" id="i_1" checked>
+            <input type="radio" name="switch" id="i_2">
+            <input type="radio" name="switch" id="i_3">
+
+            <div class="wrapper">
+
+                <div class="slide">
+                    <div class="content content1">
+                      <h2 style="text-align: left;">PLAYFAIR CIPHER</h2>
+                      <p style="text-align: left;">  
+                        The best-known multiple-letter encryption cipher is the Playfair, 
+                        which treats digrams in the plaintext as single units and translates these units into ciphertext digrams.
+                      </p>
+                    </div>
+                </div>
+
+                <div class="slide">
+                  <div  class="content content2" style="text-align: left;">
+                    <p> The Playfair algorithm is based on the use of a 5 * 5 matrix of letters constructed using a keyword.
+                    <p>  1. Repeating plaintext letters that are in the same pair are separated with a filler letter, such as x, so that balloon would be treated as ba lx lo on. </p>
+                    <p>  2. Two plaintext letters that fall in the same row of the matrix are each replaced by the letter to the right, with the first element of the row circularly following the last. </p> 
+                    <p>  3. Two plaintext letters that fall in the same column are each replaced by the letter beneath, with the top element of the column circularly following the last.</p> 
+                    <p>  4. Otherwise, each plaintext letter in a pair is replaced by the letter that lies in its own row and the column occupied by the other plaintext letter. </p>
+                  </div>
+              </div>
+
+                <div class="slide">
+                    <div class="content content3">
+
+                      <p style="text-align: left;">
+                        1. Key Generation:<br>
+   - Generate a key table using the keyword "KEYWORD," excluding duplicate letters and adding the rest of the alphabet <span style="color: red;">(excluding "J").</span><br><br>
+
+   Key Table:<br>
+   
+   K E Y W O
+   R D A B C
+   F G H I L
+   M N P Q S
+   T U V X Z<br><br>
+   
+
+2. Message Preparation:<br>
+   - Prepare the message "HELLO" for encryption, pairing letters and inserting a filler ("X" in this case).<br>
+
+   Prepared Message: H E L X L O<br><br>
+
+3. Encryption:<br>
+   - Apply Playfair rules to encrypt the prepared message:<br><br>
+
+   Encrypted Message: LOMXHE<br>
+                      </p>
+
+                      <p></p>
+
+                    </div>
+                </div>
+
+
+         <!--    <div class="controls">
+                <label for="i_1">1</label>
+                <label for="i_2">2</label>
+                <label for="i_3">3</label>
+                <label for="i_4">4</label>
+                <label for="i_5">5</label>
+                <label for="i_6">6</label>
+            </div> -->
+
+            </div></div>
+
+  <script src="java.js"></script>
+</body>
+</html>

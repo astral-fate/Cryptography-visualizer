@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rail Fence Cipher</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- bootstrap core css -->
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+
+<!-- fonts style -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!--owl slider stylesheet -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+<!-- font awesome style -->
+<link href="../css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="../css/style.css" rel="stylesheet" />
+<!-- responsive style -->
+<link href="../css/responsive.css" rel="stylesheet" />
+<style>
+  .subhead {
+    top: 11%; 
+    height: 100px; 
+    width: 600px; 
+    
+    color: black; }
+  h5{
+    color: #000000;
+  }
+  a.one:link {color:#190d4c;}
+  a.one:any-link {color:#190d4c;}
+  
+  a.one:hover {color:#00d9ff;}
+ </style>
+
+
+</head>
+
+<body>
+
+ <div class="hero_area">
+
+     <div class="hero_bg_box">
+       <div class="bg_img_box">
+         <img src="../images/hero-1.jpg" alt="">
+       </div>
+     </div>
+
+   <!-- header section strats -->
+   <header class="header_section" >
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="/index.html">
+          <span>
+            Xipher
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav  ">
+            <li class="nav-item ">
+              <a class="nav-link" href="../index.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#Aboutsec"> About</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="../algorthims.html">Algorithms <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Help.html">Help</a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+
+    <!-- header section strats -->
+    <header style="background-color: #ffffff;" class="subhead">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+  
+        
+          <a class="one" href="../Symmetric ciphers/index.html"><h6>Symmetric</h6></a>
+          <h5>&emsp;➜&emsp;</h5>
+          <a class="one" href="../Classical Encryption Techniques/index.html"><h6>Classical</h6></a>
+          <h5>&emsp;➜&emsp;</h5>
+          <a class="one" href="../Transposition Techniques/index.html"><h6>Transposition</h6></a>
+          <h5>&emsp;➜&emsp;</h5>
+          <a class="one" href="./index.html"><h6>Playfair</h6></a>
+         
+  
+  
+        </nav></div></header>
+    <div class="split right">
+        <div class="centered">
+            <div class="container">
+              <h2>Rail Fence Cipher </h2><br>
+              <label for="railSize">Rail Size: &nbsp;&nbsp;&nbsp;</label>
+              <input type="number" id="railSize" name="railSize" min="2" value="0" onchange="updateVisualization()"><br><br>
+              
+              <label for="plaintext">Plaintext: &nbsp;&nbsp;</label>
+              <input type="text" id="plaintext" name="plaintext" placeholder="Enter text" onkeyup="updateVisualization()"><br><br>
+              
+              <div id="railFenceGrid"></div><br>
+              
+              <label for="ciphertext">Ciphertext:</label>
+              <input type="text" id="ciphertext" name="ciphertext" readonly><br><br>
+
+            </div></div></div>
+
+            <div class="split left">
+              <div class="centered">
+                  <!-- slider section -->
+          
+                  <div class="controls">
+                      <label for="i_1">| DESCRIPTION | </label>
+                      <label for="i_2">ALGORITHM STEPS | </label>
+                      <label for="i_3">EXAMPLE | </label>
+                      
+                  </div><br>
+                  <input type="radio" name="switch" id="i_1" checked>
+                  <input type="radio" name="switch" id="i_2">
+                  <input type="radio" name="switch" id="i_3">
+          
+                  <div class="wrapper">
+          
+                      <div class="slide">
+                          <div class="content content1" style="text-align: left;">
+                              <h2>Rail Fence</h2>
+                              <p> The simplest cipher is the rail fence technique, 
+                                in which the plaintext is written down as a sequence of 
+                                diagonals and then read off as a sequence of rows. </p>  
+                              <p> A transposition cipher, also known as a zigzag cipher.
+                                  Named for its encoding method based on rail-like patterns. 
+                              </p>
+                          </div>
+                      </div>
+          
+                      <div class="slide">
+                          <div class="content content2" style="text-align: left;">
+                            <h2>Steps:</h2>
+                            <p>
+                              1- Write the plaintext in a sequence of diagonals.<br>
+                              2- Read off the diagonals as rows.
+                              <br><br>
+                              
+                            </p>
+                          </div>
+                      </div>
+          
+                      <div class="slide">
+                          <div class="content content3" style="text-align: left;"> 
+                            <h2>Example:</h2>
+                            <img src="../images/Rail-Fence-Cipher-Example.webp" style="height: 250px; width:500px;">                 
+                          </div>
+                      </div>
+          
+                      </div>
+       <!--  <div class="controls">
+            <label for="i_1">1</label>
+            <label for="i_2">2</label>
+            <label for="i_3">3</label>
+            <label for="i_4">4</label>
+            <label for="i_5">5</label>
+            <label for="i_6">6</label>
+        </div> -->
+
+
+    </div>
+</div>
+
+  <script src="script.js"> </script>
+</body>
+</html>

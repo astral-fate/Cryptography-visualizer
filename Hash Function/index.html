@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Function</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.9.0/dist/gsap.min.js"></script>
+
+    <!-- bootstrap core css -->
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+
+<!-- fonts style -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!--owl slider stylesheet -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+<!-- font awesome style -->
+<link href="../css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="../css/style.css" rel="stylesheet" />
+<!-- responsive style -->
+<link href="../css/responsive.css" rel="stylesheet" />
+
+
+</head>
+<body>
+
+    <div class="hero_area">
+  
+        <!-- header section strats -->
+   <header class="header_section" >
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="/index.html">
+          <span>
+            Xipher
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav  ">
+            <li class="nav-item ">
+              <a class="nav-link" href="../index.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#Aboutsec"> About</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="../algorthims.html">Algorithms <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Help.html">Help</a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+    </div>
+
+  <!-- end header section -->
+
+          <!-- header section strats -->
+          <header style="background-color: #ffffff;" class="subhead">
+            <div class="container-fluid">
+              <nav class="navbar navbar-expand-lg custom_nav-container ">
+        
+
+                <a class="one" href="../Cryptographic Data Integrity Algorithms/index.html"><h6>Cryptographic Data Integrity Algorithms</h6></a>
+                <h5>&emsp;➜&emsp;</h5>
+                <a class="one" href="../Hash Function/index.html"><h6>Hash Function</h6></a>
+
+        
+        
+              </nav></div></header>
+
+              
+
+<div class="split right">
+    <div class="centered">
+        <div class="container">
+          <h1>Hash Function</h1>
+          <label for="inputString">Enter a string:</label>
+          <input type="text" id="inputString">
+<P></P>
+          <label for="animationSpeed">Animation Speed:</label>
+          <input type="range" id="animationSpeed" min="0.1" max="2" step="0.1" value="1">
+
+          <button onclick="visualizeHash()">Hash</button>
+          <div id="visualizationContainer"></div>
+          
+
+</div></div></div>
+
+<div class="split left">
+  <div class="centered">
+      <!-- slider section -->
+<br><br><br><br><br><br>
+<br><br><br>
+
+      <div class="controls">
+          <label for="i_1">| DESCRIPTION | </label>
+          <label for="i_2">ALGORITHM STEPS | </label>
+          <label for="i_3">EXAMPLE | </label>
+          
+      </div><br>
+      <input type="radio" name="switch" id="i_1" checked>
+      <input type="radio" name="switch" id="i_2">
+      <input type="radio" name="switch" id="i_3">
+  
+      <div class="wrapper">
+
+          <div class="slide">
+              <div class="content content1" style="text-align: left">
+                <h3>HASH FUNCTION</h3>
+                <p>This hash function is expressed as:</p>
+                <p>For each bit (Ci) in the hash code (1 ≤ i ≤ n):</p>
+                <p><code>Ci = bi1 ⊕ bi2 ⊕ g ⊕ bim</code></p>
+                <p>where:</p>
+                <ul>
+                    <li><code>Ci</code>: ith bit of the hash code</li>
+                    <li><code>m</code>: number of n-bit blocks in the input</li>
+                    <li><code>bij</code>: ith bit in jth block</li>
+                    <li><code>⊕</code>: XOR operation</li>
+                </ul>
+      
+              </div>
+          </div>
+
+          <div class="slide">
+              <div class="content content2">
+                <p style="text-align: left;">
+
+                     1. Initialize hash variable: Set hash to 0.
+                <br>
+                <br> 2.	Iterate through each character in the input string:
+                <br> •	For each character in the input string:
+                <br> •	Get the ASCII code of the current character.
+                <br>
+                <br> 3.	Perform XOR operation with the current character's ASCII code:
+                <br> •	Update the hash by performing XOR with the ASCII code of the current character.
+                <br>
+                <br> 4.	Repeat for all characters:
+                <br> •	Continue this process for each character in the input string.
+                <br>
+                <br> 5.	Convert the final hash value to a string:
+                <br> •	After processing all characters, convert the final hash value to a string.
+                <br>
+                <br> 6.	Return the hashed value:
+                <br> •	The resulting string is the hashed value of the input.
+                <br><br><br></p>
+              </div>
+          </div>
+
+          <div class="slide">
+              <div class="content content3">  
+                <p style="text-align: left;">
+                
+                   Suppose we apply the provided hashing algorithm to the string "abc". The steps would be as follows:
+               <br>
+               <br>1. The ASCII code for 'a' is 97.
+               <br>* Initially, 'hash' is 0.
+               <br>* Perform XOR operation: 'hash ^ 97' results in '97'.
+               <br>* 'hash' is now updated to '97'.
+               <br>
+               <br>2. The ASCII code for 'b' is 98.
+               <br>* Perform XOR operation: '97 ^ 98' results in '3'.
+               <br>* 'hash' is now updated to '3'.
+               <br>
+               <br>3. The ASCII code for 'c' is 99.
+               <br>* Perform XOR operation: '3 ^ 99' results in '96'.
+               <br>* 'hash' is now updated to '96'.
+               <br>
+               <br>  In this way, if we hash the string "abc" using the algorithm, the resulting hashed value would be "96".
+               <br><br><br><br></p>
+              </div>
+          </div>
+
+          </div>
+</div>
+</div>
+
+<script src="script.js"> </script>
+</body>
+</html>

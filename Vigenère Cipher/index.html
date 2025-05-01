@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vigenère Cipher</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- bootstrap core css -->
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+
+<!-- fonts style -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!--owl slider stylesheet -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+<!-- font awesome style -->
+<link href="../css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="../css/style.css" rel="stylesheet" />
+<!-- responsive style -->
+<link href="../css/responsive.css" rel="stylesheet" />
+
+<style>
+  .subhead {
+    top: 11%; 
+    height: 95px; 
+    width: 600px; 
+    
+    color: black; }
+
+    a.one:link {color:#190d4c;}
+a.one:any-link {color:#190d4c;}
+
+a.one:hover {color:#00d9ff;}
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+</head>
+  
+  <body>
+       <!-- header section strats -->
+   <header class="header_section" >
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="/index.html">
+          <span>
+            Xipher
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav  ">
+            <li class="nav-item ">
+              <a class="nav-link" href="../index.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#Aboutsec"> About</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="../algorthims.html">Algorithms <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Help.html">Help</a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+         <!-- header section strats -->
+         <header style="background-color: #ffffff;" class="subhead">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+      
+            
+              <a class="one" href="../Symmetric ciphers/index.html"><h6>Symmetric</h6></a>
+              <h5>&emsp;➜&emsp;</h5>
+              <a class="one" href="../Classical Encryption Techniques/index.html"><h6>Classical</h6></a>
+              <h5>&emsp;➜&emsp;</h5>
+              <a class="one" href="../Substitution Techniques/index.html"><h6>Substitution</h6></a>
+              <h5>&emsp;➜&emsp;</h5>
+              <a class="one" href="./index.html"><h6>Vigenere</h6></a>
+      
+      
+            </nav></div></header>
+          
+     
+     <div class="split right">
+         <div class="centered">
+             <div class="container">
+              <!-- <button class="fa-adjust" onclick="myFunction()"></button> -->
+             
+              <h1>Vigenère Cipher</h1>
+              <p>First choose the key, then add your text or cipher.</p>
+              <br>
+              <label for="plaintext">Text</label>    
+              <br>
+              <textarea id="plaintext" placeholder="text" oninput="highlightPlaintext()"></textarea>
+              <br>
+              <label for="key">Key</label>
+              <br>
+              <textarea id="key" placeholder="key" oninput="highlightKey()"></textarea>
+              <br>
+              <label for="result">Cipher</label>
+              <br>
+              <textarea id="result" placeholder="cipher" ></textarea>
+              <br>
+              <input type="button" name="" style="" onclick="encrypt()" value="Encrypt">
+              <input type="button" name="" onclick="decrypt()" value="Decrypt">
+           
+              <br>
+             
+        
+             </div>
+         </div>
+     </div>
+    
+            <div class="split left">
+                <div class="centered"><br><br><br><br><br><br><br><br><br>
+
+                    <!-- slider section -->
+                <!--     <button class="fa-adjust" onclick="myFunction()"></button> -->
+                    
+          <div class="controls">
+            <label for="i_1">| TABLE | </label>
+            <label for="i_2">DESCRIPTION | </label>
+            <label for="i_3">EXAMPLE | </label>          
+        </div>
+  
+              <input type="radio" name="switch" id="i_1" checked>
+              <input type="radio" name="switch" id="i_2">
+              <input type="radio" name="switch" id="i_3">
+  
+              <div class="wrapper">
+  
+                  <div class="slide">
+                      <div class="content content1" style="text-align: left;">
+                       
+
+                          <p>Vigenère Table:</p> <button type="button" style="align-items: left;" class="icon" onclick="clearInteraction()" ><i class="fas fa-undo"></i></button><br>   <input type="button" onclick="highlightInteraction()" value="Show the interaction" ><br>
+                          <br>
+              <table border="solid black" id="ascii"></table><br><br><br><br><br><br>
+              <br>
+          
+              <script>
+                  function stringToIntList(string) {
+                      var s = [];
+                      for (var i = 0; i < string.length; i++) {
+                          s[i] = string.charCodeAt(i);
+                      }
+                      return s;
+                  }
+          
+                  function intsToCharList(integers) {
+                      var ints = [];
+                      for (var i = 0; i < integers.length; i++) {
+                          ints[i] = String.fromCharCode(integers[i]);
+                      }
+                      return ints;
+                  }
+          
+                  function encrypt() {
+                      const plaintext = document.getElementById('plaintext').value.toUpperCase().replace(/[^A-Z]/g, '');
+                      const key = document.getElementById('key').value.toUpperCase().replace(/[^A-Z]/g, '');
+          
+                      const encryptedText = vigenere(plaintext, key, 'encrypt');
+                      document.getElementById('result').value = encryptedText;
+                  }
+          
+                  function decrypt() {
+                      const ciphertext = document.getElementById('result').value.toUpperCase().replace(/[^A-Z]/g, '');
+                      const key = document.getElementById('key').value.toUpperCase().replace(/[^A-Z]/g, '');
+          
+                      const decryptedText = vigenere(ciphertext, key, 'decrypt');
+                      document.getElementById('plaintext').value = decryptedText;
+                  }
+          
+                  function vigenere(text, key, mode) {
+                      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                      let result = '';
+                      let keyIndex = 0;
+          
+                      for (let i = 0; i < text.length; i++) {
+                          const textChar = text.charAt(i);
+                          if (alphabet.indexOf(textChar) === -1) {
+                              result += textChar;
+                              continue;
+                          }
+          
+                          const keyChar = key.charAt(keyIndex % key.length);
+                          const keyIndexInAlphabet = alphabet.indexOf(keyChar);
+                          const textIndexInAlphabet = alphabet.indexOf(textChar);
+          
+                          if (mode === 'encrypt') {
+                              const encryptedIndex= (textIndexInAlphabet + keyIndexInAlphabet) % 26;
+                              result += alphabet.charAt(encryptedIndex);
+                          } else if (mode === 'decrypt') {
+                              let decryptedIndex = (textIndexInAlphabet - keyIndexInAlphabet) % 26;
+                              if (decryptedIndex < 0) {
+                                  decryptedIndex += 26;
+                              }
+                              result += alphabet.charAt(decryptedIndex);
+                          }
+          
+                          keyIndex++;
+                      }
+          
+                      return result;
+                  }
+          
+                  function makeTable() {
+                      var table = [];
+                      var minASCII = 65; // Change this value as needed for minimum ASCII
+                      var maxASCII = 75; // Change this value as needed for maximum ASCII
+                      var i = 0;
+                      while (i + minASCII < maxASCII) {
+                          var line = [];
+                          for (var j = 0; j < maxASCII - minASCII; j++) {
+                              if (j + i + minASCII >= maxASCII) {
+                                  line[line.length] = (j + i) - (maxASCII - minASCII) + minASCII;
+                              } else {
+                                  line[line.length] = j + i + minASCII;
+                              }
+                          }
+                          table[table.length] = line;
+                          i++;
+                      }
+                      return table;
+                  }
+          
+                  function printTable() {
+                      var t = makeTable();
+                      var tableContent = '';
+          
+                      for (var i = 0; i < t.length; i++) {
+                          var rowContent = '<td class="key-char">' + (i + 1) + '</td>'; // Adding class to the header row
+          
+                          for (var j = 0; j < t[i].length; j++) {
+                              var char = String.fromCharCode(t[i][j]);
+                              rowContent += '<td>' + char + '</td>';
+                          }
+          
+                          tableContent += '<tr>' + rowContent + '</tr>';
+                      }
+          
+                      var columnHeader = '<tr><td></td>';
+          
+                      for (var k = 0; k < t.length; k++) {
+                          columnHeader += '<td class="key-char">' + (k + 1) + '</td>'; // Adding class to the header columns
+                      }
+          
+                      columnHeader += '</tr>';
+                      tableContent = columnHeader + tableContent;
+                      document.getElementById('ascii').innerHTML = tableContent;
+                  }
+          
+                  function highlightKey() {
+                      var userKey = document.getElementById('key').value.toUpperCase().replace(/[^A-Z]/g, '');
+                      var table = document.getElementById('ascii');
+                      var startIndex = 'A'.charCodeAt(0); // ASCII code for 'A'
+                      var keyIndex = 0;
+          
+                      for (var i = 0; i < table.rows[1].cells.length; i++) {
+                          table.rows[1].cells[i+1].style.backgroundColor = '';
+                          var cellChar = String.fromCharCode(startIndex + i);
+                          if (userKey.indexOf(cellChar) !== -1) {
+                              table.rows[1].cells[i+1].style.backgroundColor = 'yellow';
+                              keyIndex++;
+                              if (keyIndex === userKey.length) {
+                                  break;
+                              }
+                          }
+                      }
+                  }
+                 
+                  function clearInteraction() {
+                      var table = document.getElementById('ascii');
+          
+                      for (var i = 0; i < table.rows.length; i++) {
+                          for (var j = 0; j < table.rows[i].cells.length; j++) {
+                              table.rows[i].cells[j].classList.remove('interaction');
+                          }
+                      }
+                  }
+                  function highlightPlaintext() {
+                    var userText = document.getElementById('plaintext').value.toUpperCase().replace(/[^A-Z]/g, '');
+                    var userKey = document.getElementById('key').value.toUpperCase().replace(/[^A-Z]/g, '');
+                    var table = document.getElementById('ascii');
+                    var tableRows = table.rows;
+      
+                    /* document.getElementById('plaintext').classList.add('highlight-plaintext');
+                    setTimeout(() => {
+                      document.getElementById('key').classList.add('highlight-plaintext');
+                    }, 1000); // Highlight key after 1 second delay */
+      
+                    setTimeout(() => {
+                      for (var i = 0; i < userText.length; i++) {
+                        var textChar = userText.charAt(i);
+                        var keyChar = userKey.charAt(i % userKey.length);
+      
+                        var textIndex = textChar.charCodeAt(0) - 'A'.charCodeAt(0) + 1;
+                        var keyIndex = keyChar.charCodeAt(0) - 'A'.charCodeAt(0) + 1;
+      
+                        if (textIndex >= 1 && textIndex < tableRows.length && keyIndex >= 1 && keyIndex < tableRows[0].cells.length) {
+                          tableRows[textIndex].cells[keyIndex].classList.add('interaction');
+                          setTimeout(() => {
+                            if (i < userText.length - 1) {
+                              tableRows[textIndex].cells[keyIndex].classList.remove('interaction');
+                            }
+                          }, 1000 * (i + 1));
+                        }
+                      }
+                    }, 2000); // Highlight interaction after 2 seconds delay
+                  }
+      
+                  printTable();
+                  highlightPlaintext();
+                </script>
+                      </div>
+                  </div>
+  
+                  <div class="slide">
+                    <div class="content content2" style="text-align: left;">
+                       <h2>Vigenère CIPHER</h2>
+                          <p>First choose the key, then add your text or cipher.</p>
+                          <p>Print the table to check the characters range below.</p>
+                          <p>Use min ASCII value as 32 to include space character in your text.</p>
+                          <p>Use max ASCII value as 123 to include lowercase characters in your text.</p> 
+                    </div>
+                </div>
+  
+                  <div class="slide">
+                      <div class="content content3" style="text-align: left;">
+                        <h1>Vigenère Cipher Example</h1>
+
+                        <h5>Encrypting with Vigenère Cipher</h5>
+                        <p>
+                            <strong>Message:</strong> HELLO<br>
+                            <strong>Keyword:</strong> KEYKEY<br>
+                            <strong>Encrypted Message:</strong> RIJVS
+                        </p>
+                    
+                        <p>
+                            The encryption process involves shifting each letter in the message by the corresponding letter in the keyword. Here's a step-by-step breakdown:
+                    
+                            <ol>
+                                <li>H + K = R</li>
+                                <li>E + E = I</li>
+                                <li>L + Y = J</li>
+                                <li>L + K = V</li>
+                                <li>O + E = S</li>
+                            </ol>
+                        </p>
+                    
+                        <h5>Decrypting with Vigenère Cipher</h5>
+                        <p>
+                            <strong>Encrypted Message:</strong> RIJVS<br>
+                            <strong>Keyword:</strong> KEYKEY<br>
+                            <strong>Decrypted Message:</strong> HELLO
+                        </p>
+                    
+                        <p>
+                            The decryption process involves shifting each letter in the encrypted message back by the corresponding letter in the keyword.
+                        </p>
+                    
+                       <br><br><br><br><br><br><br><br><br><br>
+  
+                      </div>
+                  </div>
+  
+  
+              </div></div>
+
+              <script src="script.js"></script>
+
+      </body>
+
+</html>

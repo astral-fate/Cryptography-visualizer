@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DES Visualization - Xipher</title>
+    <!-- Link to your main CSS files -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/responsive.css" rel="stylesheet">
+    <!-- Add specific styles for visualization -->
+    <style>
+        /* Styles for bit visualization (similar to s-des.html) */
+        .binary-visualization {
+            display: inline-flex;
+            gap: 1px;
+            font-family: monospace;
+            vertical-align: middle;
+            flex-wrap: wrap;
+            word-break: break-all; /* Ensure long strings wrap */
+        }
+        .bit-box {
+            display: inline-block;
+            border: 1px solid #aaa;
+            padding: 3px 6px;
+            min-width: 20px; /* Ensure boxes have some width */
+            text-align: center;
+            background-color: #f0f0f0;
+            line-height: 1.2;
+        }
+        .bit-group {
+             display: inline-flex;
+             gap: 1px;
+             border: 1px solid #ccc;
+             margin-right: 4px;
+             background-color: #e0e0e0;
+             padding: 1px;
+        }
+        .highlight .bit-box {
+            background-color: #ffff99;
+            border-color: #ffcc00;
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        }
+        .label {
+            display: inline-block;
+            min-width: 200px; /* Adjust for alignment */
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .card-body span { /* Ensure spans within card body can wrap */
+           display: inline-block;
+        }
+        .input-section, #visualization-area {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+         /* Style for subhead links */
+         a.one:link, a.one:visited {color:#190d4c;}
+         a.one:hover {color:#00d9ff;}
+         .subhead {
+          top: 11%;
+          height: 100px;
+          width: 800px; /* Increased width */
+          color: black;
+         }
+    </style>
+    <!-- Load BitArray library FIRST -->
+    <!-- Adjust the path if necessary -->
+    <script src="../DES/js/bit-array-typed.js"></script>
+
+    <!-- Load DES library (if it also depends on BitArray or defines DES object) -->
+    <!-- Adjust the path if necessary -->
+    <script src="../DES/js/des.js"></script>
+
+    <!-- Load 3DES logic script AFTER its dependencies -->
+    <script src="3des-logic.js"></script>
+
+    <!-- Load visualization script (can be later) -->
+    <script src="3des-visualization.js"></script>
+</head>
+<body>
+    <div class="hero_area">
+        <!-- Header Section (Copy from other pages like s-des.html or index.html) -->
+        <header class="header_section">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+              <a class="navbar-brand" href="../index.html"><span>Xipher</span></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class=""> </span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../index.html#Aboutsec"> About</a></li>
+                  <li class="nav-item active"><a class="nav-link" href="../algorthims.html">Algorithms <span class="sr-only">(current)</span></a></li>
+                  <li class="nav-item"><a class="nav-link" href="../Help.html">Help</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </header>
+        <!-- Sub-header for breadcrumbs -->
+        <header style="background-color: #ffffff;" class="subhead">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container ">
+              <a class="one" href="../Symmetric ciphers/index.html"><h6>Symmetric</h6></a>
+              <h5>&emsp;➜&emsp;</h5>
+              <a class="one" href="../Block Cipher/index.html"><h6>Block</h6></a>
+               <h5>&emsp;➜&emsp;</h5>
+              <a class="one" href="./3des.html"><h6>3DES</h6></a>
+            </nav>
+          </div>
+        </header>
+    </div>
+
+    <div class="container layout_padding">
+        <div class="heading_container heading_center">
+            <h2>
+                Triple DES (3DES) <span>Encryption Visualization</span>
+            </h2>
+            <p>
+                Visualize the Triple Data Encryption Standard (3DES) algorithm (Encrypt-Decrypt-Encrypt mode).
+                <br><small>Note: This shows the main stages. The 16 rounds within each DES operation are treated as a single step for clarity.</small>
+            </p>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <h4>Inputs</h4>
+            <form id="triple-des-form">
+                <div class="form-group">
+                    <label for="plaintext">Plaintext (64 bits binary):</label>
+                    <input type="text" class="form-control" id="plaintext" name="plaintext" maxlength="64" pattern="[01]{64}" title="Enter 64 binary digits (0 or 1)" required value="0000000100100011010001010110011110001001101010111100110111101111">
+                </div>
+                <div class="form-group">
+                    <label for="key1">Key 1 (K1 - 64 bits binary):</label>
+                    <input type="text" class="form-control" id="key1" name="key1" maxlength="64" pattern="[01]{64}" title="Enter 64 binary digits (0 or 1)" required value="0001001100110100010101110111100110011011101111001101111111110001">
+                </div>
+                <div class="form-group">
+                    <label for="key2">Key 2 (K2 - 64 bits binary):</label>
+                    <input type="text" class="form-control" id="key2" name="key2" maxlength="64" pattern="[01]{64}" title="Enter 64 binary digits (0 or 1)" required value="0101011101111001100110111011110011011111111100010001001100110100">
+                </div>
+                 <div class="form-group">
+                    <label for="key3">Key 3 (K3 - 64 bits binary, often same as K1):</label>
+                    <input type="text" class="form-control" id="key3" name="key3" maxlength="64" pattern="[01]{64}" title="Enter 64 binary digits (0 or 1)" required value="0001001100110100010101110111100110011011101111001101111111110001">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="start3desVisualization()">Encrypt</button>
+                 <button type="button" class="btn btn-secondary" onclick="resetVisualization()">Reset</button>
+            </form>
+        </div>
+
+        <!-- Visualization Section -->
+        <div id="visualization-area" class="mt-4">
+            <h4>Visualization Steps</h4>
+
+            <!-- Step 1: Initial Permutation -->
+            <div id="step-initial-permutation" class="card mb-3" style="display: none;">
+                <div class="card-body">
+                    <h5 class="card-title">Step 1: Initial Permutation (IP)</h5>
+                    <p>The 64-bit plaintext is permuted according to the IP table.</p>
+                    <span class="label">Plaintext:</span> <span class="binary-visualization" id="ip-input"></span><br>
+                    <span class="label">IP Output:</span> <span class="binary-visualization" id="ip-output"></span>
+                </div>
+            </div>
+
+            <!-- Step 2: DES Encrypt with K1 -->
+            <div id="step-des-encrypt-k1" class="card mb-3" style="display: none;">
+                <div class="card-body">
+                    <h5 class="card-title">Step 2: DES Encrypt with Key 1 (K1)</h5>
+                    <p>The result of IP is encrypted using the standard DES algorithm with Key 1 (K1).</p>
+                     <span class="label">Input:</span> <span class="binary-visualization" id="des1-input"></span><br>
+                     <span class="label">Key 1:</span> <span class="binary-visualization" id="des1-key"></span><br>
+                    <span class="label">DES Encrypt(K1) Output:</span> <span class="binary-visualization" id="des1-output"></span>
+                </div>
+            </div>
+
+            <!-- Step 3: DES Decrypt with K2 -->
+            <div id="step-des-decrypt-k2" class="card mb-3" style="display: none;">
+                <div class="card-body">
+                    <h5 class="card-title">Step 3: DES Decrypt with Key 2 (K2)</h5>
+                    <p>The result from the previous step is decrypted using the standard DES algorithm with Key 2 (K2).</p>
+                     <span class="label">Input:</span> <span class="binary-visualization" id="des2-input"></span><br>
+                     <span class="label">Key 2:</span> <span class="binary-visualization" id="des2-key"></span><br>
+                    <span class="label">DES Decrypt(K2) Output:</span> <span class="binary-visualization" id="des2-output"></span>
+                </div>
+            </div>
+
+             <!-- Step 4: DES Encrypt with K3 -->
+            <div id="step-des-encrypt-k3" class="card mb-3" style="display: none;">
+                <div class="card-body">
+                    <h5 class="card-title">Step 4: DES Encrypt with Key 3 (K3)</h5>
+                    <p>The result from the decryption step is encrypted again using the standard DES algorithm with Key 3 (K3).</p>
+                     <span class="label">Input:</span> <span class="binary-visualization" id="des3-input"></span><br>
+                     <span class="label">Key 3:</span> <span class="binary-visualization" id="des3-key"></span><br>
+                    <span class="label">DES Encrypt(K3) Output:</span> <span class="binary-visualization" id="des3-output"></span>
+                </div>
+            </div>
+
+            <!-- Step 5: Final Permutation -->
+            <div id="step-final-permutation" class="card mb-3" style="display: none;">
+                <div class="card-body">
+                    <h5 class="card-title">Step 5: Final Permutation (IP<sup>-1</sup>)</h5>
+                    <p>The result of the final DES encryption is permuted according to the inverse IP table (IP<sup>-1</sup>) to produce the ciphertext.</p>
+                    <span class="label">Input:</span> <span class="binary-visualization" id="fp-input"></span><br>
+                    <span class="label">Ciphertext (IP<sup>-1</sup> Output):</span> <span class="binary-visualization" id="fp-output"></span>
+                </div>
+            </div>
+
+            <!-- Result -->
+            <div id="result" class="card mb-3" style="display: none; background-color: #d4edda;">
+                 <div class="card-body">
+                    <h5 class="card-title">Final Result</h5>
+                    <span class="label">Plaintext:</span> <span class="binary-visualization" id="result-plaintext"></span><br>
+                    <span class="label">Key 1:</span> <span class="binary-visualization" id="result-key1"></span><br>
+                    <span class="label">Key 2:</span> <span class="binary-visualization" id="result-key2"></span><br>
+                    <span class="label">Key 3:</span> <span class="binary-visualization" id="result-key3"></span><br>
+                    <span class="label">Ciphertext:</span> <span class="binary-visualization" id="result-ciphertext"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section (Copy from other pages) -->
+    <!-- ... -->
+
+    <!-- Link to JavaScript files -->
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+
+</body>
+</html>

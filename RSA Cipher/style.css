@@ -1,0 +1,410 @@
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+/* The Modal (background) */
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+padding-top: 100px; /* Location of the box */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Add the following CSS to your existing styles or create a new style tag */
+
+/* Modal Styles */
+.modal {
+display: none;
+position: fixed;
+z-index: 1;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgb(0, 0, 0);
+background-color: rgba(0, 0, 0, 0.4);
+padding-top: 60px;
+}
+
+/* Modal Content Styles */
+.modal-content {
+background-color: #fefefe;
+margin: 5% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+max-height: 80%; /* Set the maximum height for scrolling */
+overflow-y: auto; /* Enable vertical scrollbar */
+}
+
+/* Close button Styles */
+.close {
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  color: black;
+}
+
+.top-left {
+  position: absolute;
+  top: 45%;
+  left: 70px;
+  color: black;
+}
+
+.top-right {
+  position: absolute;
+  top: 45%;
+  right: 65px;
+  color: black;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 20px;
+  right: 45px;
+  color: black;
+}
+
+.centered1 {
+  position: absolute;
+  top: 27%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+.centered2 {
+  position: absolute;
+  top: 61%;
+  left: 33%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+.centered5 {
+  position: absolute;
+  top: 61%;
+  right:23%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+.centered1 select {
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.centered3 p {
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-weight: bold;
+}
+.centered4 p {
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-weight: bold;
+}
+.centered3 {
+  position: absolute;
+  top: 41%;
+  left: 33%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+.centered4 {
+  position: absolute;
+  top: 32%;
+  right:150px;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+.centered2 button {
+  width:80px;
+  height: 35px;
+  font-size: 10px;
+  text-align: center;
+  color: black;
+  
+}
+.centered5 button {
+  width:80px;
+  height: 35px;
+  font-size: 10px;
+  text-align: center;
+  color: black;
+  
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #1A106A;
+  color: #fff;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+    /* spilt the page */
+
+    .split {
+      height: 100%;
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 10%;
+      bottom: 50%; /* Adjust this value to position it from the bottom */
+      
+      padding-top: 20px;
+    }
+
+.left {
+  left: 0;
+  background-color: #ffffff;
+}
+
+.right {
+  right: 0;
+  background-color: #ffffff;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+a.one:link {color:#190d4c;}
+a.one:any-link {color:#190d4c;}
+
+a.one:hover {color:#00d9ff;}
+    .center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .visualization {
+      display:block;
+      justify-content: space-around;
+      
+      font-weight: bold;
+    }
+    .step {
+      width: 300px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    button {
+      padding: 8px 20px;
+      margin: 10px;
+      cursor: pointer;
+      color: #000000;
+      background-color: #ccc;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .left .leftone{
+      left: 0;
+      background-color: #ffffff;
+      max-height: 900px; /* Set a fixed height */
+      overflow-y: auto; /* Add a scrollbar if the content exceeds the fixed height */
+      padding: 10px; /* Add padding for better appearance */
+
+  }
+
+  .left .rightone {
+    right: 0;
+    background-color: #ffffff;
+    max-height: 250px; /* Set a fixed height */
+    overflow-y: auto; /* Add a scrollbar if the content exceeds the fixed height */
+    padding: 10px; /* Add padding for better appearance */
+  }
+  
+  
+    button:hover {
+      background-color: #231a6f;
+      color: #fff;
+    }
+    .subhead {
+      top: 11%; 
+      height: 50px; 
+      width: 250px; 
+      
+      color: black; }
+     
+      .step-content {
+        display: none;
+      }
+      .step:hover {
+        background-color: #f0f0f0;
+      }
+      /* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  font-size: 10px;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.wrapper {
+  width: 50vw;
+  /* unfortunately width has to be set to some hard value */
+  display: flex;
+}
+
+.slide {
+  width: 0;
+}
+
+.content {
+  width: 50vw;
+  height: 100%;
+  /* this is optional if you want every slide to have same height as the highest one */
+}
+
+/* Additional styling */
+
+
+.wrapper {
+  margin: 0 auto;
+  background-color: white;
+}
+
+/* span {
+  background-color: rgb(113, 239, 235);
+  text-align: center;
+  line-height: 4rem;
+  width: 4rem;
+  border-radius: 8rem;
+  color: #4d4747;
+  font-size: 2rem;
+} */
+
+.content {
+  padding: 30px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/*.content3,
+.content5,
+.content6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E0E0E0;
+}*/
+
+.content2 {
+  background-image: url(img3.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#i_1:checked~.wrapper .content1,
+#i_2:checked~.wrapper .content2,
+#i_3:checked~.wrapper .content3,
+#i_4:checked~.wrapper .content4{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+label {
+  color: #000000;
+  transition-duration: .6s;
+  cursor: pointer;
+}
+
+#i_1:checked~.controls label[for="i_1"],
+#i_2:checked~.controls label[for="i_2"],
+#i_3:checked~.controls label[for="i_3"],
+#i_4:checked~.controls label[for="i_4"]{
+  color: rgb(113, 239, 235);
+}
+

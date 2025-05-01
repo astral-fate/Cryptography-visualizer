@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Elgamal</title>
+  <link rel="stylesheet" href="./style.css">
+<!-- bootstrap core css -->
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+
+<!-- fonts style -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!--owl slider stylesheet -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+<!-- font awesome style -->
+<link href="../css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="../css/style.css" rel="stylesheet" />
+<!-- responsive style -->
+<link href="../css/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+ <div class="hero_area">
+
+     <div class="hero_bg_box">
+       <div class="bg_img_box">
+         <img src="../images/hero-1.jpg" alt="">
+       </div>
+     </div>
+
+   <!-- header section strats -->
+   <header class="header_section" style="background-color: #231a6f;">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="/index.html">
+          <span>
+            Xipher
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="background-color: #231a6f;">
+          <ul class="navbar-nav  " style="background-color: #231a6f;">
+            <li class="nav-item ">
+              <a class="nav-link" href="../index.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#Aboutsec"> About</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="../algorthims.html">Algorithms <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Help.html">Help</a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+  <!-- header section strats -->
+  <header style="background-color: #ffffff; height:90px;" class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+
+       
+        <a class="one" href="../Asymmetric ciphers/ascipher.html"><h6>Asymmetric </h6></a>
+        <h5>&emsp;➜&emsp;</h5>
+        <a class="one" href="./index.html"><h6>Elgamal</h6></a>
+
+
+      </nav></div></header>
+<body>
+<!--   <nav>
+    <ul>
+        <li><a href="./index.html">encryption</a></li>
+        <li><a href="./decrypt.html">decryption</a></li>
+    </ul>
+</nav> -->
+
+    
+<div class="container">
+  <div class="split right">
+    <div class="container">
+      <img src="/KEY GENERATION.png" style="width: 700px; height: auto;" />
+
+
+          <div class="bottom-left"><input placeholder="q"  id="primeInput" type="number" style="width: 50px;">&nbsp;<input placeholder="XA" id="privateKey" type="number" style="width: 50px;"></div>
+
+          <div class="centered1"><div class="popup" onclick="myFunction()"><span class="popuptext" id="myPopup">You must enter prime q to generate the primitive root (a) list</span>
+             a:&nbsp;<select id="primitiveRoot"></select></div> </div>
+
+            <div class="top-left"><button style="width: 90px; height:25px;" onclick="generateKeys()">Generate</button></div>
+            
+          <div class="centered3"> <div id="keyGenerationResultAlice"></div></div> 
+
+          <div class="centered4"><input style="width: 120px; height:23px;" type="number" id="plaintextBob"></div>
+          <div class="top-right"><input id="kValue" style="width: 120px; height:23px;" placeholder="integerK" type="number"></div>
+
+          <div class="top-right1"><div id="publicKeyDisplay"></div>
+          <div id="encryptionResultBob"></div></div>
+          
+          <div class="centered2"><button  onclick="encryptMessage()">Encrypt</button></div>
+
+          <div class="bottom-right"><input placeholder="q" id="primeInput1" type="number" style="width: 50px;">&nbsp;<input placeholder="C1" id="recoveredC1" type="number" style="width: 50px;">&nbsp;<input placeholder="XA" id="privateKey1" type="number" style="width: 50px;">&nbsp;<button id="recoverKButton">Recover K</button></div>
+
+          <div class="bottom-right2"><input placeholder="K" id="recoveredKValue" type="number" style="width: 50px;">&nbsp;<input placeholder="C2" id="recoveredC2" type="number" style="width: 50px;">&nbsp;<button  id="recoverPlaintextButton">Decrypt</button></div>
+
+          <div class="bottom-right1"><div id="recoveredK"></div></div>
+          <div class="bottom-right3"><div id="recoveredPlaintext"></div></div>
+
+  
+          
+      </div>
+   
+      </div></div>
+
+    <div class="split left">
+      <div class="centered">
+
+         <!-- slider section -->
+
+         <div class="controls" style="font-weight: bold;"><br><br><br><br><br><br><br><br>
+          <label for="i_1">| DESCRIPTION | </label>
+          <label for="i_2">ALGORITHM STEPS | </label>
+          <label for="i_3">EXAMPLE | </label>
+          
+      </div><br>
+
+      <input type="radio" name="switch" id="i_1" checked>
+      <input type="radio" name="switch" id="i_2">
+      <input type="radio" name="switch" id="i_3" >
+
+      <div class="wrapper">
+
+          <div class="slide">
+              <div class="content content1" style="text-align: left;">
+                  
+                <h2>ELGAMAL CIPHER</h2>
+                <P>Elgamal is a public-key cryptographic scheme introduced by T. Elgamal in 1984, leveraging discrete logarithms, 
+                  closely related to the Diffie-Hellman technique.
+                   It is widely employed in standards such as the Digital Signature Standard (DSS) and the S/MIME email standard.
+                </P>
+
+                  <div id="keyGenerationResultAlice"></div>
+                  <div id="publicKeyDisplay"></div>
+                  <div id="encryptionResultBob"></div><br><br>
+              </div>
+          </div>
+
+          <div class="slide">
+              <div class="content content2" >
+
+
+                <img src="/images/elgamal step.PNG" style="height: 600px; width:500px; overflow: scroll;" ><br><br><br><br><br><br><br><br><br><br>
+              </div>
+          </div>
+
+          <div class="slide">
+              <div class="content content3" style="text-align: left;">
+                <h2>Example:</h2>
+                <p>Given:</p>
+                <ul>
+                    <li>p = 23,</li>
+                    <li>g = 5 (publicly known)</li>
+                    <li>Private Key a is randomly chosen</li>
+                    <li>Public Key A is calculated as A = g^a mod p</li>
+                    <li>Original Message: 15</li>
+                </ul>
+            
+                <h3>Encryption:</h3>
+                <ol>
+                    <li>Choose a random k, compute B = g^k mod p, calculate s = A^k mod p</li>
+                    <li>Compute c1 = g^k mod p and c2 = (plaintext * s) mod p</li>
+                    <li>The ciphertext is (c1, c2).</li>
+                </ol>
+            
+                <h3>Decryption:</h3>
+                <ol>
+                    <li>Compute s = c1^a mod p, calculate s^-1 = s^-1 mod p</li>
+                    <li>Decrypt the message using decrypted_text = (c2 * s^-1) mod p</li>
+                </ol>
+            
+              </div>
+          </div>
+  <!--       <div class="controls">
+            <label for="i_1">1</label>
+            <label for="i_2">2</label>
+            <label for="i_3">3</label>
+            <label for="i_4">4</label>
+            <label for="i_5">5</label>
+            <label for="i_6">6</label>
+        </div>
+ -->
+
+        
+   
+    </div></div></div>
+
+
+    
+    
+    
+      </div></div>
+    
+  </div>
+  <script src="./elgamal.js"></script>
+</body>
+</html>

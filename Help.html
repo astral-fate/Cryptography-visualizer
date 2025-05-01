@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .new_home_web .text-blk.subHeading {
+      text-align: center;
+      color: #939393;
+      max-width: 630px;
+    }
+    
+    .new_home_web .text-blk.heading {
+      font-size: 36px;
+      line-height: 55px;
+      font-weight: 600;
+      margin-top: 0px;
+      margin-right: 0px;
+      margin-bottom: 20px;
+      margin-left: 0px;
+    }
+    
+    .new_home_web .responsive-container-block.textContainer {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+      margin-right: 0px;
+      margin-bottom: 40px;
+      margin-left: 0px;
+      max-width: 1320px;
+      z-index: 50;
+    }
+    
+    .new_home_web .responsive-cell-block.wk-tab-12.wk-mobile-12.wk-desk-12.wk-ipadp-12 {
+      width: 50%;
+      padding-top: 0px;
+      padding-right: 0px;
+      padding-bottom: 25px;
+      padding-left: 10px;
+    }
+    
+    .new_home_web .send:hover {
+      background-image: initial;
+      background-position-x: initial;
+      background-position-y: initial;
+      background-size: initial;
+      background-repeat-x: initial;
+      background-repeat-y: initial;
+      background-attachment: initial;
+      background-origin: initial;
+      background-clip: initial;
+    }
+    
+    .new_home_web .send {
+      font-size: 18px;
+      color: white;
+      font-weight: 600;
+      background-color: #38D4E4;
+      width: 80%;
+      text-align: center;
+      padding-top: 15px;
+      padding-right: 0px;
+      padding-bottom: 15px;
+      padding-left: 0px;
+      margin-top: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+    
+    .new_home_web .container-block.form-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      z-index: 50;
+    }
+    
+    .new_home_web .responsive-cell-block.wk-tab-12.wk-mobile-12.wk-desk-7.wk-ipadp-10.line {
+      width: 100%;
+      padding-top: 0px;
+      padding-right: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+      max-width: 1100px;
+    }
+    
+    .new_home_web .responsive-cell-block.wk-tab-12.wk-mobile-12.wk-desk-5.wk-ipadp-10 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 30%;
+      max-width: 310px;
+      padding-top: 0px;
+      padding-right: 40px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+    }
+    
+    .new_home_web .responsive-cell-block.wk-ipadp-6.wk-tab-12.wk-mobile-12.wk-desk-6 {
+      margin-top: 0px;
+      margin-right: 0px;
+      margin-bottom: 30px;
+      margin-left: 0px;
+      padding-top: 0px;
+      padding-right: 10px;
+      padding-bottom: 0px;
+      padding-left: 10px;
+      width: 100%;
+    }
+    
+    .new_home_web .textinput {
+      height: 100%;
+      width: 100%;
+      border-top-width: 2px;
+      border-right-width: 2px;
+      border-bottom-width: 2px;
+      border-left-width: 2px;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-top-color: #a2a2a2;
+      border-right-color: #a2a2a2;
+      border-bottom-color: #a2a2a2;
+      border-left-color: #a2a2a2;
+      border-image-source: initial;
+      border-image-slice: initial;
+      border-image-width: initial;
+      border-image-outset: initial;
+      border-image-repeat: initial;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      font-size: 16px;
+      padding-top: 20px;
+      padding-right: 30px;
+      padding-bottom: 20px;
+      padding-left: 20px;
+      background-color: #f1f1f1;
+    }
+    
+    .new_home_web .input {
+      height: 50px;
+      width: 100%;
+      border-top-width: 2.5px;
+      border-right-width: 2.5px;
+      border-bottom-width: 2.5px;
+      border-left-width: 2.5px;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-top-color: #a2a2a2;
+      border-right-color: #a2a2a2;
+      border-bottom-color: #a2a2a2;
+      border-left-color: #a2a2a2;
+      border-image-source: initial;
+      border-image-slice: initial;
+      border-image-width: initial;
+      border-image-outset: initial;
+      border-image-repeat: initial;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      font-size: 16px;
+      padding-top: 5px;
+      padding-right: 15px;
+      padding-bottom: 5px;
+      padding-left: 15px;
+      background-color: #f1f1f1;
+    }
+    
+    .new_home_web .responsive-container-block.big-container {
+      padding-top: 0px;
+      padding-right: 50px;
+      padding-bottom: 0px;
+      padding-left: 50px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .new_home_web .responsive-container-block.container {
+      max-width: 1320px;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0px;
+      margin-right: auto;
+      margin-bottom: 60px;
+      margin-left: auto;
+      z-index: 50;
+    }
+    
+    .new_home_web .responsive-cell-block {
+      min-height: 75px;
+    }
+    
+    .new_home_web textarea:focus {
+      outline-color: initial;
+      outline-style: none;
+      outline-width: initial;
+    }
+    
+    .new_home_web input:focus {
+      outline-color: initial;
+      outline-style: none;
+      outline-width: initial;
+    }
+    
+    .new_home_web a {
+      text-decoration-line: none;
+      text-decoration-thickness: initial;
+      text-decoration-style: initial;
+      text-decoration-color: initial;
+    }
+    
+    .new_home_web .responsive-container-block {
+      min-height: 75px;
+      height: fit-content;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 0px;
+      margin-right: auto;
+      margin-bottom: 40px;
+      margin-left: auto;
+    }
+    
+    .new_home_web * {
+      font-family: Nunito, sans-serif;
+    }
+    
+    .new_home_web .text-blk {
+      margin-top: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      line-height: 25px;
+      padding-top: 0px;
+      padding-right: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+    }
+    
+    .new_home_web .left4 {
+      width: 50%;
+      padding-top: 0px;
+      padding-right: 10px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+    }
+    
+    .new_home_web .responsive-cell-block.wk-desk-6.wk-ipadp-6.wk-tab-12.wk-mobile-12.lastPhone {
+      margin-top: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+    }
+    
+    .new_home_web .orangeText {
+      color: #38D4E4;
+    }
+    
+    .new_home_web .orangeLine {
+      height: 10px;
+      width: 160px;
+      background-color: #38D4E4;
+    }
+    
+    .new_home_web .topHead {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0px;
+      margin-right: 0px;
+      margin-bottom: 40px;
+      margin-left: 0px;
+      margin: 0 0 25px 0;
+    }
+    
+    .new_home_web .imgBG {
+      position: absolute;
+      width: 80%;
+      height: 100%;
+      left: auto;
+      right: 0px;
+      top: auto;
+      bottom: 0px;
+    }
+    
+    @media (max-width: 1024px) {
+      .new_home_web .responsive-cell-block.wk-tab-12.wk-mobile-12.wk-desk-5.wk-ipadp-10 {
+        margin-top: 60px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+      }
+    
+      .new_home_web .responsive-cell-block.wk-tab-12.wk-mobile-12.wk-desk-7.wk-ipadp-10.line {
+        padding-top: 0px;
+        padding-right: 20px;
+        padding-bottom: 60px;
+        padding-left: 0px;
+      }
+    
+      .new_home_web .responsive-container-block.container {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .new_home_web .responsive-cell-block.wk-tab-12.wk-mobile-12.wk-desk-12.wk-ipadp-12 {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+      }
+    
+      .new_home_web .responsive-cell-block.wk-ipadp-6.wk-tab-12.wk-mobile-12.wk-desk-6 {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        margin: 0 0 10px 0;
+      }
+    
+      .new_home_web .container-block.form-wrapper {
+        align-items: center;
+      }
+    
+      .new_home_web .responsive-cell-block.wk-tab-12.wk-mobile-12.wk-desk-5.wk-ipadp-10 {
+        width: 100%;
+        margin-top: 30px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+      }
+    
+      .new_home_web .responsive-cell-block.wk-tab-12.wk-mobile-12.wk-desk-7.wk-ipadp-10.line {
+        width: 100%;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 20px;
+        padding-left: 0px;
+      }
+    
+      .new_home_web .responsive-container-block.container {
+        flex-direction: column;
+      }
+    
+      .new_home_web .textinput {
+        width: 100%;
+      }
+    
+      .new_home_web .input {
+        width: 100%;
+      }
+    
+      .new_home_web .left4 {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        width: 100%;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 25px;
+        margin-left: 0px;
+      }
+    
+      .new_home_web .responsive-container-block {
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .new_home_web .textinput {
+        height: 200px;
+      }
+    
+      .new_home_web .responsive-cell-block.wk-tab-12.wk-mobile-12.wk-desk-12.wk-ipadp-12 {
+        width: 100%;
+      }
+    
+      .new_home_web .imgBG {
+        width: 100%;
+        height: 90%;
+        top: auto;
+        left: auto;
+      }
+    
+      .new_home_web .text-blk.heading {
+        font-size: 30px;
+      }
+    }
+    
+    @media (max-width: 500px) {
+      .new_home_web .responsive-cell-block.wk-tab-12.wk-mobile-12.wk-desk-5.wk-ipadp-10 {
+        flex-wrap: wrap;
+      }
+    
+      .new_home_web .send {
+        padding-top: 15px;
+        padding-right: 0px;
+        padding-bottom: 15px;
+        padding-left: 0px;
+        text-align: center;
+        width: 70%;
+      }
+    
+      .new_home_web .responsive-container-block.big-container {
+        padding-top: 0px;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        padding-left: 20px;
+      }
+    
+      .new_home_web .text-blk.heading {
+        font-size: 30px;
+        text-align: center;
+        line-height: 35px;
+      }
+    
+      .new_home_web .send {
+        width: 100%;
+        max-width: 250px;
+      }
+    
+      .new_home_web .imgBG {
+        height: 60%;
+      }
+    
+      .new_home_web .text-blk.subHeading {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    
+      .new_home_web .responsive-container-block.textContainer {
+        margin: 50px 0 30px 0;
+      }
+    
+      .new_home_web .input {
+        height: 45px;
+      }
+    
+      .new_home_web .responsive-cell-block.wk-ipadp-6.wk-tab-12.wk-mobile-12.wk-desk-6 {
+        margin: 0 0 10px 0;
+      }
+    }
+  </style>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+
+  <title> Xipher </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg.png" alt="">
+      </div>
+    </div>
+
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              Xipher
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item ">
+                <a class="nav-link" href="./index.html">Home </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./index.html#Aboutsec"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./algorthims.html">Algorithms</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="./Help.html">Help<span class="sr-only">(current)</span> </a>
+              </li>
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+  
+  <!-- why section -->
+<!-- 
+  <section class="why_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Ask <span>Us</span>
+        </h2>
+      </div>
+      <div class="why_container">
+        
+        <div class="box">
+          <div class="img-box">
+            <img src="images/w4.png" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Do not hesitate to ask us for assistance
+            </h5>
+            <p>
+              FellFreeToAsk@gmail.com
+            </p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+ -->
+  <!-- end why section -->
+
+  <div class="new_home_web">
+    <div class="responsive-container-block big-container">
+      <img class="imgBG" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/aw65.png">
+      <div class="responsive-container-block textContainer">
+        <div class="topHead">
+          <p class="text-blk heading">
+            Get in
+            <span class="orangeText">
+              touch
+            </span>
+          </p>
+          <div class="orangeLine" id="w-c-s-bgc_p-2-dm-id">
+          </div>
+        </div>
+        <p class="text-blk subHeading">
+          <!--hereeeeeeeeeeeeeeee-->
+        </p>
+      </div>
+      <div class="responsive-container-block container">
+        <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-7 wk-ipadp-10 line" id="i69b">
+          <form action="./response.html" class="form-box">
+            <div class="container-block form-wrapper">
+              <div class="responsive-container-block">
+                <div class="left4">
+                  <div class="responsive-cell-block wk-ipadp-6 wk-tab-12 wk-mobile-12 wk-desk-6" id="i10mt-2">
+                    <input class="input" id="ijowk-2" name="FirstName" placeholder="First Name">
+                  </div>
+                  <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
+                    <input class="input" id="indfi-2" name="Last Name" placeholder="Last Name">
+                  </div>
+                  <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
+                    <input class="input" id="ipmgh-2" name="Email" placeholder="Email Address">
+                  </div>
+                  <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12 lastPhone">
+                    <input class="input" id="imgis-2" name="PhoneNumber" placeholder="Phone Number">
+                  </div>
+                </div>
+                <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12" id="i634i-2">
+                  <textarea class="textinput" id="i5vyy-2" placeholder="Message"></textarea>
+                </div>
+              </div>
+              <button type="submit" class="send" id="w-c-s-bgc_p-1-dm-id">
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+   
+  
+  </script>
+
+  <!-- info section -->
+
+  <!--هنا نعدلها ونحط التيلي حقنا والايميل للتواصل والمساعدهS-->
+
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row">
+        
+        
+        <div class="col-md-6 col-lg-2 mx-auto info_col">
+          <div class="info_link_box">
+            <h4>
+              Links
+            </h4>
+            <div class="info_links">
+              <a class="active" href="./index.html">
+                Home
+              </a>
+              <a class="" href="./index.html#Aboutsec">
+                About
+              </a>
+              <a class="" href="./algorthims.html">
+                Algorithms
+              </a>
+              <a class="" href="./Help.html">
+                Help
+              </a>
+           
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 info_col ">
+          <h4>
+            Join our community
+          </h4>
+          <a style="color: white;" href="https://t.me/XipherCommunity"><p style="font-size:15px"><i class="fa fa-telegram" ></i>&ensp;Telegram </p></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <section class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> 
+    </div>
+  </section>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- footer section -->
+
+  <!-- jQery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- custom js -->
+  <script type="text/javascript" src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+
+</body>
+
+</html>

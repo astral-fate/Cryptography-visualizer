@@ -1,0 +1,363 @@
+  /* Add CSS styles for visualization */
+    /* Customize as needed for better visualization */
+
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 50px;
+      }
+      button:hover {
+          background-color: #231a6f;
+          color: #fff;
+        }
+         /* Slider section */
+    .wrapper {
+      width: 50vw;
+      /* unfortunately width has to be set to some hard value */
+      display: flex;
+  }
+  
+  .slide {
+      width: 0;
+  }
+  
+  .content {
+      width: 50vw;
+      height: 100%;
+      /* this is optional if you want every slide to have same height as the highest one */
+  }
+  
+  /* Additional styling */
+  
+  
+  
+  .wrapper {
+      margin: 0 auto;
+      background-color: white;
+  }
+  
+  
+  
+  .content {
+      padding: 30px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .6s;
+      max-height: 90vh;
+      overflow-y: auto;
+  }
+  
+  
+  /*.content5,
+  .content6 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #E0E0E0;
+  }*/
+  
+  
+  #i_1:checked~.wrapper .content1,
+  #i_2:checked~.wrapper .content2,
+  #i_3:checked~.wrapper .content3,
+  #i_4:checked~.wrapper .content4 {
+      opacity: 1;
+      pointer-events: auto;
+  }
+  
+  label {
+      color: #000000;
+      transition-duration: .6s;
+      cursor: pointer;
+  }
+  
+  
+  .animated-element {
+    position: absolute;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes moveElement {
+    to {
+      top: 0;
+      left: 100%;
+    }
+  }
+  
+  #i_1:checked~.controls label[for="i_1"],
+  #i_2:checked~.controls label[for="i_2"],
+  #i_3:checked~.controls label[for="i_3"],
+  #i_4:checked~.controls label[for="i_4"]{
+      color: rgb(113, 239, 235);
+  }
+  
+  input{
+    border-width: 1px;
+  }
+      
+      .error-label {
+        color: red;
+      }
+      .resize {
+          width: 300px;
+          height: auto;
+      }
+      .split {
+          height: 100%;
+          width: 50%;
+          position: fixed;
+          z-index: 1;
+          top: 17%;
+          overflow-x: hidden;
+          padding-top: 20px;
+        }
+        
+        a.one:link {color:#190d4c;}
+        a.one:any-link {color:#190d4c;}
+  
+        a.one:hover {color:#00d9ff;}
+        
+        
+        .left {
+          left: 0;
+          background-color: #ffffff;
+        }
+        
+        .right {
+          right: 0;
+          background-color: #ffffff;
+        }
+        
+        .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+        }
+        .bottom-left {
+          position: absolute;
+          top:28%;
+          left: 250px;
+          color: black;
+        }
+        
+        .top-left {
+          position: absolute;
+          top: 39.5%;
+          left: 51%;
+          color: black;
+        }
+        
+        .top-right {
+          position: absolute;
+          top: 44.5%;
+          left: 33%;
+          color: black;
+        }
+        .top-right1 {
+          position: absolute;
+          top:53%;
+          left: 30.5%;
+          color: black;
+        }
+        .top-right1 p {
+          font-size: 10px;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+          font-weight: bold;
+        }
+        
+        .bottom-right {
+          position: absolute;
+          top: 53%;
+          right: 30%;
+          color: black;
+        }
+        .bottom-right2 {
+          position: absolute;
+          top: 64%;
+          right: 32%;
+          color: black;
+        }
+        .bottom-right3 {
+          position: absolute;
+          top: 74%;
+          left: 54%;
+          color: black;
+        }
+        .bottom-right4 {
+          position: absolute;
+          top: 74%;
+          left: 30%;
+          color: black;
+        }
+        .bottom-right3 p {
+          font-size: 10px;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+          font-weight: bold;
+        }
+        .bottom-right1 {
+          position: absolute;
+          top: 64%;
+          left: 30%;
+          color: black;
+        }
+        .bottom-right1 p {
+          font-size: 10px;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+          font-weight: bold;
+        }
+        
+        .centered1 {
+          position: absolute;
+          top: 34%;
+          left: 43.5%;
+          transform: translate(-50%, -50%);
+          color: black;
+        }
+        .centered2 {
+          position: absolute;
+          top: 51%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: black;
+        }
+        .centered5 {
+          position: absolute;
+          top: 54%;
+          right:30%;
+          transform: translate(-50%, -50%);
+          color: black;
+        }
+        .centered1 select {
+          font-size: 10px;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+        }
+        .centered3 p {
+          font-size: 10px;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+          font-weight: bold;
+        }
+        .centered4 p {
+          font-size: 10px;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+          font-weight: bold;
+        }
+        .centered3 {
+          position: absolute;
+          top: 46%;
+          left: 63%;
+          transform: translate(-50%, -50%);
+          color: black;
+        }
+        .centered4 {
+          position: absolute;
+          top: 42.5%;
+          left: 37.5%;
+          transform: translate(-50%, -50%);
+          color: black;
+        }
+        .centered2 button {
+          width:70px;
+          height: 30px;
+          font-size: 10px;
+          text-align: center;
+          color: black;
+          
+        }
+        .centered5 button {
+          width:80px;
+          height: 35px;
+          font-size: 10px;
+          text-align: center;
+          color: black;
+          
+        }
+        
+        .centered {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+        }
+        a.one:link {color:#190d4c;}
+        a.one:any-link {color:#190d4c;}
+      
+        a.one:hover {color:#00d9ff;}
+      
+         /* Popup container - can be anything you want */
+      .popup {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+      /* The actual popup */
+      .popup .popuptext {
+        visibility: hidden;
+        font-size: 10px;
+        width: 160px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -80px;
+      }
+      
+      /* Popup arrow */
+      .popup .popuptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+      }
+      
+      /* Toggle this class - hide and show the popup */
+      .popup .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+        
+      }
+      
+      /* Add animation (fade in the popup) */
+      @-webkit-keyframes fadeIn {
+        from {opacity: 0;} 
+        to {opacity: 1;}
+      }
+      
+      @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity:1 ;}
+      }
+      

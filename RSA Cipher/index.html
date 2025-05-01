@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RSA Encryption</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha384-GLhlTQ8iNl4i6TpujMO5nmOJ46LgtQDf5Q8r5SUEZB" crossorigin="anonymous">
+  <link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
+
+  <link rel="stylesheet" href="./style.css">
+<!-- bootstrap core css -->
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+
+<!-- fonts style -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!--owl slider stylesheet -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+<!-- font awesome style -->
+<link href="../css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="../css/style.css" rel="stylesheet" />
+<!-- responsive style -->
+<link href="../css/responsive.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg.png" alt="">
+      </div>
+    </div>
+
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="../index.html">
+            <span>
+              Xipher
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item ">
+                <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html#Aboutsec">About</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../algorthims.html">Algorithms</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Help.html">Help</a>
+              </li>
+            
+     
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- header section strats -->
+  <header style="background-color: #ffffff;" class="subhead">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+
+      
+        <a class="one" href="../Asymmetric ciphers/ascipher.html"><h6>Asymmetric </h6></a>
+        <h5 style="color: #000000;">&emsp;➜&emsp;</h5>
+        <a class="one" href="./index.html"><h6>RSA</h6></a>
+
+
+      </nav></div></header>
+
+
+<body>
+    <!-- Alice's Section -->
+    <div class="split right">
+      <div class="centered">
+        <button id="viewStepsBtn" onclick="openModal()">View Steps</button>
+        <!-- Add this div to your HTML for the modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="modalStepsContent"></div>
+  </div>
+</div>
+
+        <div class="container">
+          <img src="/ALICE.jpg" style="width: 700px; height: auto;" />
+
+            <div class="bottom-left"><input placeholder="p" id="p" oninput="updateSelectOptions()" type="number" style="width: 50px;">&nbsp;<input placeholder="q" id="q" oninput="updateSelectOptions()" type="number" style="width: 50px;"></div>
+            <div class="top-left"><input id="aliceMessage" placeholder="Message" type="text" style="width: 70px;"></div>
+            <div class="top-right"><input placeholder="Cipher" id="bobCiphertext" type="number" style="width: 70px;"></div>
+            <div class="bottom-right"><input placeholder="d" id="d" type="number" style="width: 50px;">&nbsp;<input placeholder="n" id="n" type="number" style="width: 50px;"></div>
+            <div class="centered4"><p>Decrypted Message:</p><p id="bobDecryptedMessage"></p></div>
+            <div class="centered1"><div class="popup" onclick="myFunction()"><span class="popuptext" id="myPopup">You must enter the p and q to generate the e list</span>
+              e:&nbsp;<select id="aliceE"></select></div> </div>
+              <div class="centered3"><p>Public Key (N):</p>
+                <p id="alicePublicKeyN"></p>
+              <p>Private Key (d):</p>
+                <p id="alicePrivateKeyD"></p>
+              <p>Encrypted Message:</p>
+              <p id="aliceEncryptedMessage"></p></div>
+              
+              <div class="centered2"><button  onclick="aliceGenerateKeys()">Encrypt</button></div>
+              <div class="centered5"><button  onclick="bobDecrypt()">Decrypt</button></div>
+
+      
+              
+          </div>
+      </div>
+    </div>
+  
+    <div class="split left">
+      <div class="centered">
+        <div class="controls" style="font-weight: bold;">
+          <label for="i_1">| DESCRIPTION | </label>
+          <label for="i_2">ALGORITHM STEPS | </label>
+          <label for="i_3">EXAMPLE | </label>
+          
+      </div><br>
+
+      <input type="radio" name="switch" id="i_1" checked>
+      <input type="radio" name="switch" id="i_2">
+      <input type="radio" name="switch" id="i_3">
+
+      <div style="text-align: left;" class="wrapper">
+
+          <div class="slide">
+              <div  class="content content1">
+                  <p style="text-align: left;">
+                    RSA (Rivest-Shamir-Adleman) is a widely used public-key encryption algorithm, developed by Ron Rivest, Adi Shamir, and Len Adleman in 1977. It employs a pair of keys, public and private, to encrypt and decrypt messages, ensuring secure communication over potentially insecure channels. The security of RSA relies on the difficulty of factoring the product of two large prime numbers.
+                  </p>
+              </div>
+          </div>
+
+          <div class="slide">
+              <div class="content content2">
+                <ol>
+                  <li><strong>Key Generation:</strong>
+                    <ul>
+                      <li>Choose two large prime numbers, p and q.</li>
+                      <li>Calculate n = p * q.</li>
+                      <li>Compute f(n) = (p - 1)(q - 1).</li>
+                      <li>Select a public exponent (e) such that 1 < e < f(n), and gcd(f(n), e) = 1.</li>
+                      <li>Calculate the private exponent (d) as d ≡ e^(-1) (mod f(n)).</li>
+                      <li>Public Key: PU = {e, n}, Private Key: PR = {d, n}.</li>
+                    </ul>
+                  </li>
+              
+                  <li><strong>Encryption (By Sender):</strong>
+                    <ul>
+                      <li>Convert the message (M) to an integer.</li>
+                      <li>Compute the ciphertext (C) using the public key: C ≡ M^e (mod n).</li>
+                    </ul>
+                  </li>
+              
+                  <li><strong>Decryption (By Receiver):</strong>
+                    <ul>
+                      <li>Compute the original message (M) using the private key: M ≡ C^d (mod n).</li>
+                    </ul>
+                  </li>
+                </ol>
+
+              </div>
+          </div>
+
+          <div class="slide">
+              <div class="content content3">
+                <img src="/rsa example.PNG">
+              
+              </div>
+          </div>
+    
+    </div></div></div>
+  
+  
+  
+    <script type="text/javascript">
+      
+      function myFunction() {
+        var selectElement = document.getElementById("aliceE");
+        var popup = document.getElementById("myPopup");
+    
+        if (selectElement.options.length === 0) {
+            // Show the popup only when the select list is empty
+            popup.classList.add("show");
+    
+            // Set a timer to remove the "show" class after 5 seconds (5000 milliseconds)
+            setTimeout(function () {
+                popup.classList.remove("show");
+            }, 5000);
+        }
+    }
+    
+      function updateSelectOptions() {
+        var p = document.getElementById('p').value;
+        var q = document.getElementById('q').value;
+        var t = (p - 1) * (q - 1);
+    
+        var selectE = document.getElementById('aliceE');
+        selectE.innerHTML = ""; // Clear previous options
+    
+        for (var i = 2; i < t; i++) {
+          if (gcd(i, t) === 1) {
+            var option = document.createElement('option');
+            option.value = i;
+            option.text = i;
+            selectE.add(option);
+          }
+        }
+      }
+    
+      function isPrime(num) {
+        if (num < 2) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+    
+      function validateInput(fieldId) {
+        const inputField = document.getElementById(fieldId);
+        const inputValue = parseInt(inputField.value);
+    
+        if (!isNaN(inputValue) && !isPrime(inputValue)) {
+          alert(`Please enter a valid prime number for ${fieldId.toUpperCase()}.`);
+          inputField.value = "";
+        }
+      }
+    
+      // Alice's RSA Key Generation
+      function aliceGenerateKeys() {
+        var p = document.getElementById('p').value;
+        var q = document.getElementById('q').value;
+        var e = document.getElementById('aliceE').value;
+    
+        if (!p || !q || !e) {
+          alert("Please fill in all the required fields.");
+          return;
+        }
+    
+        if (!isPrime(p) || !isPrime(q)) {
+          alert("Both p and q must be prime numbers.");
+          return;
+        }
+    
+        var n = p * q;
+        var fN = (p - 1) * (q - 1);
+    
+        // Validate e
+        if (e < 1 || e > fN || !Number.isInteger(Number(e)) || !isPrime(e) || gcd(fN, e) !== 1) {
+          alert("Please select a valid public exponent (e).");
+          return;
+        }
+    
+        // Calculate d
+        var d = modInverse(e, fN);
+    
+        // Update Alice's public and private keys
+        document.getElementById('alicePublicKeyN').innerHTML = n;
+        document.getElementById('alicePrivateKeyD').innerHTML = d;
+    
+    
+        // Encrypt message for Bob
+        var message = document.getElementById('aliceMessage').value;
+        if (!message) {
+          alert("Please enter a message for Bob.");
+          return;
+        }
+    
+        var encryptedMessage = modPow(message, e, n);
+        document.getElementById('aliceEncryptedMessage').innerHTML = encryptedMessage;}
+        function openModal() {
+          var p = document.getElementById('p').value;
+          var q = document.getElementById('q').value;
+          var e = document.getElementById('aliceE').value;
+          var d = document.getElementById('d').value;
+          var message = document.getElementById('aliceMessage').value;
+          var ct = document.getElementById('bobCiphertext').value;
+          var n = document.getElementById('n').value;
+        
+          var modal = document.getElementById("myModal");
+          modal.style.display = "block";
+        
+          // Display the steps in the modal
+          var modalStepsContent = document.getElementById("modalStepsContent");
+          modalStepsContent.innerHTML = `
+          <strong style="color="red">Enter values too see step by step how it works !</strong><br><br>
+            <strong>Step 1: Generate Primes</strong>
+            <div>Choose two prime numbers (P and Q). Example: P = ${p}, Q = ${q}</div>
+            <br>
+            <strong>Step 2: Calculate N</strong>
+            <div>Calculate N (P * Q). Example: N = ${p * q}</div>
+            <br>
+            <strong>Step 3: Calculate ϕ</strong>
+            <div>Calculate ϕ (t = (P - 1) * (Q - 1)). Example: ϕ = ${(p - 1) * (q - 1)}</div>
+            <br>
+            <strong>Step 4: Find E</strong>
+            <div>Find a public exponent (E) such that 1 < E < ϕ and E is coprime with ϕ. Example: E = ${e}</div>
+            <br>
+            <strong>Step 5: Find D</strong>
+            <div>Find a private exponent (D) such that (E * D) % ϕ = 1. Example: D = ${d}</div>
+            <br>
+            <strong>Step 6: Encrypt Message</strong>
+            <div>Encrypt the Message using the public key. Example: Ciphertext (C) = ${message}<sup>${e}</sup>  % ${p * q}</div>
+            <strong>Step 7: Decrypt Message</strong>
+            <div>Decrypt the Ciphertext using the private key. Example: Decrypted Message = ${ct}<sup>${d}</sup> % ${n}</div>
+          `;
+        }
+        
+
+// Function to close the modal
+function closeModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
+// Add these lines to your existing code to handle the modal
+var modalBtn = document.getElementById("myBtn");
+modalBtn.addEventListener("click", openModal);
+
+var closeBtn = document.getElementsByClassName("close")[0];
+closeBtn.addEventListener("click", closeModal);
+
+// Optional: Close the modal when clicking outside of it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+
+
+     // Bob's RSA Decryption
+  function bobDecrypt() {
+    var n = document.getElementById('n').value;
+    var d = document.getElementById('d').value;
+    var ct = document.getElementById('bobCiphertext').value;
+
+    // Check if any of the inputs are empty
+    if (!n || !d || !ct) {
+      alert("Please enter values for N, d, and Ciphertext.");
+      return;
+    }
+
+    // Convert input values to integers
+    n = parseInt(n);
+    d = parseInt(d);
+    ct = parseInt(ct);
+
+    // Check if the input values are valid numbers
+    if (isNaN(n) || isNaN(d) || isNaN(ct)) {
+      alert("Please enter valid numbers for N, d, and Ciphertext.");
+      return;
+    }
+
+    // Bob's decryption
+    var decryptedMessage = modPow(ct, d, n);
+    document.getElementById("bobDecryptedMessage").innerHTML = decryptedMessage;
+  }
+      
+    
+      function gcd(a, b) {
+        return b === 0 ? a : gcd(b, a % b);
+      }
+    
+      function modInverse(a, m) {
+        a = ((a % m) + m) % m;
+        for (var x = 1; x < m; x++) {
+          if ((a * x) % m === 1) {
+            return x;
+          }
+        }
+        return 1;
+      }
+    
+      function modPow(base, exponent, modulus) {
+        if (modulus === 1) return 0;
+        var result = 1;
+        base = base % modulus;
+        while (exponent > 0) {
+          if (exponent % 2 === 1) {
+            result = (result * base) % modulus;
+          }
+          exponent = exponent >> 1;
+          base = (base * base) % modulus;
+        }
+        return result;
+      }
+    
+      function updateVisualization(containerId, steps) {
+        var visualization = document.getElementById(containerId);
+      
+        steps.forEach((step, index) => {
+          var stepDiv = document.createElement('div');
+          stepDiv.classList.add('step');
+          stepDiv.innerHTML = `
+            <strong onclick="toggleStep(${index})" >${step.title}</strong>
+            <div class="step-content" id="stepContent${index}" style="display: none;">
+              ${step.content}
+              <br>
+              <button onclick="nextStep(${index})">Next</button>
+              <button onclick="closeStep(${index})">Close</button>
+            </div>`;
+      
+          visualization.appendChild(stepDiv);
+        });
+      }
+      
+      function nextStep(index) {
+        // Logic to navigate to the next step
+        toggleStep(index);
+        toggleStep(index + 1);
+      }
+      
+      function closeStep(index) {
+        // Logic to close the current step
+        var stepContent = document.getElementById(`stepContent${index}`);
+        stepContent.style.display = 'none';
+      }
+      
+      function toggleStep(index) {
+        var stepContent = document.getElementById(`stepContent${index}`);
+        stepContent.style.display = (stepContent.style.display === 'none' || stepContent.style.display === '') ? 'block' : 'none';
+      }
+      
+    </script>
+
+</body>
+</html>

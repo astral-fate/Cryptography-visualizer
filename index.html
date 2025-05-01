@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta charset="utf-8">
+  
+  <style>
+
+    .dropbtn {
+      background-color: #F8F8F9;
+      color: black;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .highlight {
+      background-color: rgb(66, 241, 241);
+      color: #333;
+      }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      
+      flex-direction: row; /* Make sections appear side by side */
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: #38D4E4;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown-content .dropdown-section {
+      background-color: #6f6f6f;
+      color: white;
+      font-weight: bold;
+      flex: 1; 
+    }
+
+    .dropdown-content-columns {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #F8F8F9;
+    }
+    /* Animation */
+.anim-typewriter{
+  animation: typewriter 3s steps(44) 1s 1 normal both,
+             blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 35em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: rgba(255,255,255,.75);}
+  to{border-right-color: transparent;}
+}
+
+.line-1{
+  position: relative;
+  top: 50%;  
+  
+  margin: 0 auto;
+  border-right: 2px solid rgba(255,255,255,.75);
+  font-size: 180%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%);    
+}
+  </style>
+  <!-- Basic -->
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Site Metas -->
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+
+  <title> Xipher </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg.png" alt="">
+      </div>
+    </div>
+
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              Xipher
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Aboutsec">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./algorthims.html">Algorithms</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./Help.html">Help</a>
+              </li>
+            
+     
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="detail-box">
+
+                    <!-- هنا تعريف السايفرز ومعلومات عامه قبل يبدا عملية التشفير-->
+                    <h1 >Xipher: VISUALIZATION TOOL FOR ENCRYPTION ALGORITHMS <br>
+                    </h1>
+                    <p >
+
+Xipher tool intends to demystify the encryption algorithm's complexities and understanding by focusing on the usability aspects to provide a graphical interactive representation that improves users’ understanding and learning. 
+                    </p>
+                    <div class="btn-box">
+                      <a href="./algorthims.html" class="btn1">
+                        GET START
+                      </a>
+                    </div>
+                  </div>
+                </div>
+             
+              <div class="col-md-5">
+                  <div class="img-box">
+                    <img src="images\img4.png" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div></div></div></section>
+    
+  </div>
+
+
+  <!-- service section -->
+
+  <section class="service_section layout_padding">
+    <div class="service_container">
+      <div class="container ">
+        <div class="heading_container heading_center">
+          <h2>
+            Encryption <span> Algorthims</span>
+          </h2><br>
+          <p class="anim-typewriter line-1">
+            Start your journey with encryption world now!!
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-md-4 ">
+            <div class="box ">
+              <div class="img-box">
+                <img src="images/s1.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  Symmetric Ciphers
+                </h5>
+                <!--هنا نحط تعريف السمتريك بسيط مره يكون-->
+                <p>
+                  In symmetric ciphers, only a single key is used for enciphering and deciphering.
+                </p><br><br><br>
+                <a href="./Symmetric ciphers/index.html">Explore</a>
+                
+               
+              
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 ">
+            <div class="box ">
+              <div class="img-box">
+                <img src="images/s2.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  Asymmetric Ciphers
+                </h5>
+                <!--هنا نحط تعريف الاسمتريك بسيط مره يكون-->
+                <p>
+                  Asymmetric encryption  algorithms use a pair of keys to encrypt and decrypt data generally known as public key  and private key. 
+                </p><br>
+                <a href="./Asymmetric ciphers/ascipher.html">Explore</a>
+                <!-- <div class="dropdown">
+                  <button class="dropbtn">Explore</button>
+                  <div class="dropdown-content">
+                    <div class="dropdown-section">Public key</div>
+                    <a href="#">RSA</a>
+                    <a href="#">DiffieHellman</a>
+                    <a href="#">Elgamal</a>
+                    
+              
+                    
+              
+                
+                  </div> -->
+                </div>
+
+              </div>
+            </div>
+        
+          <div class="col-md-4 ">
+            <div class="box ">
+              <div class="img-box">
+                <img src="./images/hash.png" alt="">
+              </div>
+              <div class="detail-box">
+                <!--هنا النوع الثالث مدري اذا فيه غيرهم او قولي لي احذفه-->
+                <h5>
+                Cryptographic Data Integrity Algorithms 
+                </h5>
+                <p>
+                  CRYPTOGRAPHIC DATA INTEGRITY ALGORITHMS  are a variety of mechanisms used to assure the integrity of a data unit or stream of data units 
+                </p>
+              
+                <a href="./Cryptographic Data Integrity Algorithms/index.html">Explore</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </section>
+
+  <!-- end service section -->
+
+
+  <!-- about section -->
+  <!--فكرت نحط هذا السكشن نتكل عن موقعنا وليه هو الوجهه الافضل للجميع-->
+
+  <section id="Aboutsec" class="about_section layout_padding" style="background-color: white; color:black;">
+    <div class="container  ">
+      
+      <div class="row">
+        <div class="col-md-4 ">
+          <div class="img-box">
+            <img src="./images/vulnerability.png" alt="" style="color: white;">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container ">
+              <h2>
+                About <span>Us</span>
+              </h2>
+              
+            </div>
+            <p>
+
+        
+              Deema Alzamil, Fay Alomar and Razan Alyami. We are students in the Computer Science Department at Imam Mohammad Ibn Saud Islamic University. This website is part of our graduation project.  
+              
+    
+              </p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- info section -->
+
+  <!--هنا نعدلها ونحط التيلي حقنا والايميل للتواصل والمساعدهS-->
+
+  <section class="info_section layout_padding2" >
+    <div class="container">
+      <div class="row">
+        
+        
+        
+        <div class="col-md-6 col-lg-2 mx-auto info_col">
+          <div class="info_link_box" >
+            <h4 >
+              Links
+            </h4>
+            <div class="info_links">
+              <a class="active" href="./index.html">
+                Home
+              </a>
+              <a  class="" href="./index.html#Aboutsec">
+                About
+              </a>
+              <a class="" href="./algorthims.html">
+                Algorithms
+              </a>
+              <a class="" href="./Help.html">
+                Help
+              </a>
+             
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 info_col ">
+          <h4 >
+            Join our community
+          </h4>
+          <a style="color: white;" href="https://t.me/XipherCommunity"><p style="font-size:15px"><i class="fa fa-telegram" ></i>&ensp;Telegram </p></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <section class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> 
+    </div>
+  </section>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- footer section -->
+
+  <!-- jQery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- custom js -->
+  <script type="text/javascript" src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+
+</body>
+
+</html>

@@ -1,0 +1,326 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  
+  button:hover {
+      background-color: #231a6f;
+      color: #fff;
+      size: 10px;
+    }
+     /* Slider section */
+  .wrapper {
+  width: 50vw;
+  /* unfortunately width has to be set to some hard value */
+  display: flex;
+  }
+  
+  .slide {
+  width: 0;
+  }
+  
+  .content {
+  width: 50vw;
+  height: 100%;
+  /* this is optional if you want every slide to have same height as the highest one */
+  }
+  
+  /* Additional styling */
+  
+  
+  
+  .wrapper {
+  margin: 0 auto;
+  background-color: white;
+  }
+  
+  
+  
+  .content {
+  padding: 30px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s;
+  max-height: 90vh;
+  overflow-y: auto;
+  }
+  
+  
+  /*.content5,
+  .content6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E0E0E0;
+  }*/
+  
+  
+  #i_1:checked~.wrapper .content1,
+  #i_2:checked~.wrapper .content2,
+  #i_3:checked~.wrapper .content3,
+  #i_4:checked~.wrapper .content4 {
+  opacity: 1;
+  pointer-events: auto;
+  }
+  
+  label {
+  color: #000000;
+  transition-duration: .6s;
+  cursor: pointer;
+  }
+  
+  #i_1:checked~.controls label[for="i_1"],
+  #i_2:checked~.controls label[for="i_2"],
+  #i_3:checked~.controls label[for="i_3"],
+  #i_4:checked~.controls label[for="i_4"]{
+  color: rgb(113, 239, 235);
+  }
+  
+  .output {
+    margin-top: 20px;
+  }
+  .error-label {
+    color: red;
+  }
+  .resize {
+      width: 300px;
+      height: auto;
+  }
+  .split {
+      height: 100%;
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 17%;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+    
+    .left {
+      left: 0;
+      background-color: #ffffff;
+    }
+    
+    .right {
+      right: 0;
+      background-color: #ffffff;
+    }
+    .bottom-left {
+      position: absolute;
+      top:30%;
+      left: 70px;
+      color: black;
+    }
+    
+    .top-left {
+      position: absolute;
+      top: 38%;
+      left: 70px;
+      color: black;
+    }
+    
+    .top-right {
+      position: absolute;
+      top: 26%;
+      right: 90px;
+      color: black;
+    }
+    .top-right1 {
+      position: absolute;
+      top: 31%;
+      right: 90px;
+      color: black;
+    }
+    .top-right1 p {
+      font-size: 10px;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      font-weight: bold;
+    }
+    
+    .bottom-right {
+      position: absolute;
+      top: 50%;
+      left: 70px;
+      color: black;
+    }
+    .bottom-right2 {
+      position: absolute;
+      top: 55%;
+      left: 70px;
+      color: black;
+    }
+    .bottom-right3 {
+      position: absolute;
+      top: 60%;
+      left: 155px;
+      color: black;
+    }
+    .bottom-right3 p {
+      font-size: 10px;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      font-weight: bold;
+    }
+    .bottom-right1 {
+      position: absolute;
+      top: 60%;
+      left: 70px;
+      color: black;
+    }
+    .bottom-right1 p {
+      font-size: 10px;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      font-weight: bold;
+    }
+    
+    .centered1 {
+      position: absolute;
+      top: 36%;
+      left: 12%;
+      transform: translate(-50%, -50%);
+      color: black;
+    }
+    .centered2 {
+      position: absolute;
+      top: 32%;
+      left: 62%;
+      transform: translate(-50%, -50%);
+      color: black;
+    }
+    .centered5 {
+      position: absolute;
+      top: 54%;
+      right:30%;
+      transform: translate(-50%, -50%);
+      color: black;
+    }
+    .centered1 select {
+      font-size: 10px;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+    .centered3 p {
+      font-size: 10px;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      font-weight: bold;
+    }
+    .centered4 p {
+      font-size: 10px;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      font-weight: bold;
+    }
+    .centered3 {
+      position: absolute;
+      top: 35.5%;
+      left: 34%;
+      transform: translate(-50%, -50%);
+      color: black;
+    }
+    .centered4 {
+      position: absolute;
+      top: 23.5%;
+      right:30px;
+      transform: translate(-50%, -50%);
+      color: black;
+    }
+    .centered2 button {
+      width:70px;
+      height: 30px;
+      font-size: 10px;
+      text-align: center;
+      color: black;
+      
+    }
+    .centered5 button {
+      width:80px;
+      height: 35px;
+      font-size: 10px;
+      text-align: center;
+      color: black;
+      
+    }
+    
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    a.one:link {color:#190d4c;}
+    a.one:any-link {color:#190d4c;}
+  
+    a.one:hover {color:#00d9ff;}
+  
+     /* Popup container - can be anything you want */
+  .popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* The actual popup */
+  .popup .popuptext {
+    visibility: hidden;
+    font-size: 10px;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class - hide and show the popup */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+  

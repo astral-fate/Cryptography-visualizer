@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S-DES Visualization - Xipher</title>
+    <!-- Link to your main CSS files -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/responsive.css" rel="stylesheet">
+    <!-- Add specific styles for S-DES visualization if needed -->
+    <style>
+        /* Styles for bit visualization */
+        .binary-visualization {
+            display: inline-flex; /* Use flexbox for alignment */
+            gap: 1px; /* Space between bit boxes */
+            font-family: monospace;
+            vertical-align: middle; /* Align with surrounding text */
+            flex-wrap: wrap; /* Allow wrapping if needed */
+        }
+        .bit-box {
+            display: inline-block;
+            border: 1px solid #aaa;
+            padding: 3px 6px;
+            min-width: 24px; /* Ensure consistent width */
+            text-align: center;
+            background-color: #f0f0f0;
+            line-height: 1.2;
+        }
+        .bit-group { /* Optional: for grouping bits */
+             display: inline-flex;
+             gap: 1px;
+             border: 1px solid #ccc;
+             margin-right: 4px; /* Space between groups */
+             background-color: #e0e0e0; /* Slightly different background for group */
+             padding: 1px;
+        }
+        /* Add highlight style */
+        .highlight .bit-box {
+            background-color: #ffff99; /* Yellow background for highlighted bits */
+            border-color: #ffcc00; /* Darker border for highlight */
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        }
+        .label { /* Style the text label part */
+            display: inline-block;
+            min-width: 250px; /* Adjust as needed for alignment */
+            margin-right: 5px;
+        }
+        .step-detail { /* Container for label + viz */
+             margin-bottom: 8px;
+             display: flex; /* Align label and viz */
+             align-items: center; /* Center vertically */
+        }
+        /* Ensure code/span elements inside cards behave well */
+        .card-body code, .card-body span[id] {
+            word-break: break-all; /* Prevent long strings from breaking layout */
+        }
+        .card-body hr {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- You might want to include the standard header from index.html -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="../index.html">
+            <span>
+              Xipher
+            </span>
+          </a>
+          <!-- Add the rest of the navbar items -->
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html#Aboutsec">About</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../algorthims.html">Algorithms <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Help.html">Help</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container layout_padding">
+        <div class="heading_container heading_center">
+            <h2>
+                S-DES <span>Encryption Visualization</span>
+            </h2>
+            <p>
+                Visualize the Simplified Data Encryption Standard (S-DES) algorithm step by step.
+            </p>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <h4>Inputs</h4>
+            <form id="sdes-form">
+                <div class="form-group">
+                    <label for="plaintext">Plaintext (8 bits):</label>
+                    <input type="text" class="form-control" id="plaintext" name="plaintext" maxlength="8" pattern="[01]{8}" title="Enter 8 binary digits (0 or 1)" required value="10101010">
+                </div>
+                <div class="form-group">
+                    <label for="key">Key (10 bits):</label>
+                    <input type="text" class="form-control" id="key" name="key" maxlength="10" pattern="[01]{10}" title="Enter 10 binary digits (0 or 1)" required value="1100101101">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="startSdesVisualization()">Encrypt</button>
+                 <button type="button" class="btn btn-secondary" onclick="resetVisualization()">Reset</button>
+            </form>
+        </div>
+
+        <!-- Visualization Section -->
+        <div id="visualization-area" class="mt-4">
+            <h4>Visualization Steps</h4>
+            <!-- Steps will be dynamically added here by JavaScript -->
+            <div id="step-initial-permutation" class="card mb-3" style="display: none;">
+                <div class="card-body">
+                    <h5 class="card-title">Step 1: Initial Permutation (IP)</h5>
+                    <div class="step-detail"><span class="label">Input Plaintext:</span><span class="binary-visualization" id="ip-input"></span></div>
+                    <div class="step-detail"><span class="label">Permutation Table (IP):</span><code>[2, 6, 3, 1, 4, 8, 5, 7]</code></div>
+                    <div class="step-detail"><span class="label">Output after IP:</span><span class="binary-visualization" id="ip-output"></span></div>
+                </div>
+            </div>
+             <div id="step-key-generation" class="card mb-3" style="display: none;">
+                 <div class="card-body">
+                    <h5 class="card-title">Step 2: Key Generation</h5>
+                     <div class="step-detail"><span class="label">Initial 10-bit Key:</span><span class="binary-visualization" id="kgen-input-key"></span></div>
+                     <div class="step-detail"><span class="label">Permutation P10:</span><code>[3, 5, 2, 7, 4, 10, 1, 9, 8, 6]</code></div>
+                     <div class="step-detail"><span class="label">After P10:</span><span class="binary-visualization" id="kgen-p10-output"></span></div>
+                     <div class="step-detail"><span class="label">Left Shift 1 (LS-1) on left 5 bits:</span><span class="binary-visualization" id="kgen-ls1-left"></span></div>
+                     <div class="step-detail"><span class="label">Left Shift 1 (LS-1) on right 5 bits:</span><span class="binary-visualization" id="kgen-ls1-right"></span></div>
+                     <div class="step-detail"><span class="label">Combined after LS-1:</span><span class="binary-visualization" id="kgen-ls1-combined"></span></div>
+                     <div class="step-detail"><span class="label">Permutation P8:</span><code>[6, 3, 7, 4, 8, 5, 10, 9]</code></div>
+                     <div class="step-detail"><span class="label"><strong>Subkey K1:</strong></span><span class="binary-visualization" id="kgen-k1"></span></div>
+                     <hr>
+                     <div class="step-detail"><span class="label">Left Shift 2 (LS-2) on LS-1 left bits:</span><span class="binary-visualization" id="kgen-ls2-left"></span></div>
+                     <div class="step-detail"><span class="label">Left Shift 2 (LS-2) on LS-1 right bits:</span><span class="binary-visualization" id="kgen-ls2-right"></span></div>
+                     <div class="step-detail"><span class="label">Combined after LS-2:</span><span class="binary-visualization" id="kgen-ls2-combined"></span></div>
+                     <div class="step-detail"><span class="label">Permutation P8:</span><code>[6, 3, 7, 4, 8, 5, 10, 9]</code></div>
+                     <div class="step-detail"><span class="label"><strong>Subkey K2:</strong></span><span class="binary-visualization" id="kgen-k2"></span></div>
+                 </div>
+            </div>
+            <div id="step-round-1" class="card mb-3" style="display: none;">
+                 <div class="card-body">
+                    <h5 class="card-title">Step 3: Round 1 Function (f<sub>k</sub>)</h5>
+                    <div class="step-detail"><span class="label">Input to Round 1 (Output of IP):</span><span class="binary-visualization" id="r1-input"></span></div>
+                    <div class="step-detail"><span class="label">Subkey K1:</span><span class="binary-visualization" id="r1-k1"></span></div>
+                    <hr>
+                    <h6>Function f<sub>k</sub> Details:</h6>
+                     <div class="step-detail"><span class="label">Right Half Input:</span><span class="binary-visualization" id="r1-right-half-input"></span></div>
+                     <div class="step-detail"><span class="label">Expansion/Permutation (E/P):</span><code>[4, 1, 2, 3, 2, 3, 4, 1]</code></div>
+                     <div class="step-detail"><span class="label">Output of E/P:</span><span class="binary-visualization" id="r1-ep-output"></span></div>
+                     <div class="step-detail"><span class="label">XOR with K1:</span><span class="binary-visualization" id="r1-ep-output-xor"></span> XOR <span class="binary-visualization" id="r1-k1-xor"></span></div>
+                     <div class="step-detail"><span class="label">XOR Result:</span><span class="binary-visualization" id="r1-xor-k1-output"></span></div>
+                     <div class="step-detail"><span class="label">S-Box Input (S0 | S1):</span><span class="binary-visualization" id="r1-sbox-input"></span></div>
+                     <div class="step-detail"><span class="label">S0 Output:</span><span class="binary-visualization" id="r1-s0-output"></span> | <span class="label" style="min-width: auto;">S1 Output:</span><span class="binary-visualization" id="r1-s1-output"></span></div>
+                     <div class="step-detail"><span class="label">Combined S-Box Output:</span><span class="binary-visualization" id="r1-sbox-combined"></span></div>
+                     <div class="step-detail"><span class="label">Permutation P4:</span><code>[2, 4, 3, 1]</code></div>
+                     <div class="step-detail"><span class="label">Output of P4 (Result of f<sub>k</sub>):</span><span class="binary-visualization" id="r1-p4-output"></span></div>
+                     <hr>
+                     <div class="step-detail"><span class="label">Left Half Input:</span><span class="binary-visualization" id="r1-left-half-input"></span></div>
+                     <div class="step-detail"><span class="label">XOR Left Half with P4 Output:</span><span class="binary-visualization" id="r1-left-half-input-xor"></span> XOR <span class="binary-visualization" id="r1-p4-output-xor"></span></div>
+                     <div class="step-detail"><span class="label">XOR Result:</span><span class="binary-visualization" id="r1-xor-p4-output"></span></div>
+                     <div class="step-detail"><span class="label">Output after Round 1 (Before Swap):</span><span class="binary-visualization" id="r1-output-noswap"></span></div>
+                 </div>
+            </div>
+             <div id="step-swap" class="card mb-3" style="display: none;">
+                 <div class="card-body">
+                    <h5 class="card-title">Step 4: Swap Halves</h5>
+                    <div class="step-detail"><span class="label">Input before Swap:</span><span class="binary-visualization" id="swap-input"></span></div>
+                    <div class="step-detail"><span class="label">Output after Swap:</span><span class="binary-visualization" id="swap-output"></span></div>
+                 </div>
+            </div>
+            <div id="step-round-2" class="card mb-3" style="display: none;">
+                 <div class="card-body">
+                    <h5 class="card-title">Step 5: Round 2 Function (f<sub>k</sub>)</h5>
+                    <div class="step-detail"><span class="label">Input to Round 2 (Output of Swap):</span><span class="binary-visualization" id="r2-input"></span></div>
+                    <div class="step-detail"><span class="label">Subkey K2:</span><span class="binary-visualization" id="r2-k2"></span></div>
+                    <hr>
+                    <h6>Function f<sub>k</sub> Details:</h6>
+                     <div class="step-detail"><span class="label">Right Half Input:</span><span class="binary-visualization" id="r2-right-half-input"></span></div>
+                     <div class="step-detail"><span class="label">Expansion/Permutation (E/P):</span><code>[4, 1, 2, 3, 2, 3, 4, 1]</code></div>
+                     <div class="step-detail"><span class="label">Output of E/P:</span><span class="binary-visualization" id="r2-ep-output"></span></div>
+                     <div class="step-detail"><span class="label">XOR with K2:</span><span class="binary-visualization" id="r2-ep-output-xor"></span> XOR <span class="binary-visualization" id="r2-k2-xor"></span></div>
+                     <div class="step-detail"><span class="label">XOR Result:</span><span class="binary-visualization" id="r2-xor-k2-output"></span></div>
+                     <div class="step-detail"><span class="label">S-Box Input (S0 | S1):</span><span class="binary-visualization" id="r2-sbox-input"></span></div>
+                     <div class="step-detail"><span class="label">S0 Output:</span><span class="binary-visualization" id="r2-s0-output"></span> | <span class="label" style="min-width: auto;">S1 Output:</span><span class="binary-visualization" id="r2-s1-output"></span></div>
+                     <div class="step-detail"><span class="label">Combined S-Box Output:</span><span class="binary-visualization" id="r2-sbox-combined"></span></div>
+                     <div class="step-detail"><span class="label">Permutation P4:</span><code>[2, 4, 3, 1]</code></div>
+                     <div class="step-detail"><span class="label">Output of P4 (Result of f<sub>k</sub>):</span><span class="binary-visualization" id="r2-p4-output"></span></div>
+                     <hr>
+                     <div class="step-detail"><span class="label">Left Half Input:</span><span class="binary-visualization" id="r2-left-half-input"></span></div>
+                     <div class="step-detail"><span class="label">XOR Left Half with P4 Output:</span><span class="binary-visualization" id="r2-left-half-input-xor"></span> XOR <span class="binary-visualization" id="r2-p4-output-xor"></span></div>
+                     <div class="step-detail"><span class="label">XOR Result:</span><span class="binary-visualization" id="r2-xor-p4-output"></span></div>
+                     <div class="step-detail"><span class="label">Output after Round 2:</span><span class="binary-visualization" id="r2-output"></span></div>
+                 </div>
+            </div>
+            <div id="step-final-permutation" class="card mb-3" style="display: none;">
+                 <div class="card-body">
+                    <h5 class="card-title">Step 6: Final Permutation (IP<sup>-1</sup>)</h5>
+                    <div class="step-detail"><span class="label">Input to Final Permutation:</span><span class="binary-visualization" id="fp-input"></span></div>
+                    <div class="step-detail"><span class="label">Permutation Table (IP<sup>-1</sup>):</span><code>[4, 1, 3, 5, 7, 2, 8, 6]</code></div>
+                    <div class="step-detail"><span class="label">Final Ciphertext:</span><span class="binary-visualization" id="fp-output"></span></div>
+                 </div>
+            </div>
+            <div id="result" class="card bg-light mt-4" style="display: none;">
+                 <div class="card-body">
+                     <h4 class="card-title">Result</h4>
+                     <div class="step-detail"><span class="label">Plaintext:</span><span class="binary-visualization" id="result-plaintext"></span></div>
+                     <div class="step-detail"><span class="label">Key:</span><span class="binary-visualization" id="result-key"></span></div>
+                     <div class="step-detail"><span class="label">Ciphertext:</span><span class="binary-visualization" id="result-ciphertext"></span></div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include standard footer if needed -->
+     <section class="footer_section">
+        <div class="container">
+          <p>
+            &copy; <span id="displayYear"></span> Xipher
+          </p>
+        </div>
+      </section>
+
+    <!-- Link to jQuery and Bootstrap JS -->
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <!-- Link to your custom JS for S-DES -->
+    <script src="sdes-visualization.js"></script> <!-- You need to create this file -->
+     <script type="text/javascript" src="../js/custom.js"></script> <!-- For year display etc. -->
+
+</body>
+</html>
