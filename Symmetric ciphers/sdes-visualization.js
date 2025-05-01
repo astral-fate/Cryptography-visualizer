@@ -66,8 +66,8 @@ function generateKeys(key) {
     const k1 = permute(combinedLS1, P8);
 
     // LS-2
-    const ls2Left = leftShift(ls1Left, 2);
-    const ls2Right = leftShift(ls1Right, 2);
+    const ls2Left = leftShift(ls1Left, 2); // Apply LS-2 on the *original* LS-1 left part
+    const ls2Right = leftShift(ls1Right, 2); // Apply LS-2 on the *original* LS-1 right part
     const combinedLS2 = ls2Left + ls2Right;
 
     // K2 (P8)
@@ -168,8 +168,21 @@ function applyHighlight(elementId, duration) {
 
 // Visualization Control Functions
 function resetVisualization() {
+    // Reset all forms
     document.getElementById('sdes-form').reset();
-    const steps = document.querySelectorAll('.step-container, #result');
+    document.getElementById('sdes-keygen-form').reset();
+    document.getElementById('sdes-encrypt-keys-form').reset();
+
+    // Restore default values if they were changed
+    document.getElementById('plaintext').value = "10101010";
+    document.getElementById('key').value = "1100101101";
+    document.getElementById('keygen-key').value = "1010000010";
+    document.getElementById('encrypt-plaintext').value = "11011001";
+    document.getElementById('encrypt-k1').value = "10100010";
+    document.getElementById('encrypt-k2').value = "10011001";
+
+
+    const steps = document.querySelectorAll('.card[id^="step-"], #result');
     steps.forEach(step => step.style.display = 'none');
     // Clear previous results
     const codes = document.querySelectorAll('code, span[id$="-input"], span[id$="-xor"], strong');
@@ -180,19 +193,28 @@ function resetVisualization() {
         container.innerHTML = '';
         container.classList.remove('highlight'); // Remove highlight on reset
     });
+    // Reset title
+    const titleElement = document.getElementById('visualization-title');
+    if (titleElement) {
+        titleElement.textContent = 'Visualization Steps';
+    }
 }
 
 function displayStep(stepId, delay) {
     return new Promise(resolve => {
         setTimeout(() => {
-            document.getElementById(stepId).style.display = 'block';
-            // Optional: Scroll into view
-            // document.getElementById(stepId).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            const stepElement = document.getElementById(stepId);
+            if (stepElement) {
+                stepElement.style.display = 'block';
+                // Optional: Scroll into view
+                // stepElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
             resolve();
         }, delay);
     });
 }
 
+// --- Main Visualization Function (User Input - Full Encryption) ---
 async function startSdesVisualization() {
     resetVisualization(); // Clear previous run
 
@@ -211,6 +233,12 @@ async function startSdesVisualization() {
 
     const delay = 500; // Delay in ms between steps
     const highlightDuration = delay * 0.8; // Make highlight slightly shorter than step delay
+
+    // Update title
+    const titleElement = document.getElementById('visualization-title');
+    if (titleElement) {
+        titleElement.textContent = 'Visualization Steps (Full Encryption)';
+    }
 
     // --- Step 1: Initial Permutation ---
     renderBinary('ip-input', plaintext, 4); // Group by 4
@@ -265,6 +293,7 @@ async function startSdesVisualization() {
     applyHighlight('r1-k1', highlightDuration);
     await displayStep('step-round-1', delay / 2);
     const round1 = fk(ipResult, keys.k1);
+    // ... (rest of Round 1 visualization as before) ...
     renderBinary('r1-right-half-input', round1.rightHalfInput);
     applyHighlight('r1-right-half-input', highlightDuration);
     await new Promise(resolve => setTimeout(resolve, delay));
@@ -315,6 +344,7 @@ async function startSdesVisualization() {
     applyHighlight('r1-output-noswap', highlightDuration);
     await new Promise(resolve => setTimeout(resolve, delay));
 
+
     // --- Step 4: Swap ---
     const beforeSwap = round1.fkResult + round1.rightHalfInput;
     const afterSwap = round1.rightHalfInput + round1.fkResult; // Swap the halves
@@ -332,6 +362,7 @@ async function startSdesVisualization() {
     applyHighlight('r2-k2', highlightDuration);
     await displayStep('step-round-2', delay / 2);
     const round2 = fk(afterSwap, keys.k2);
+    // ... (rest of Round 2 visualization as before) ...
     renderBinary('r2-right-half-input', round2.rightHalfInput);
     applyHighlight('r2-right-half-input', highlightDuration);
     await new Promise(resolve => setTimeout(resolve, delay));
@@ -382,6 +413,7 @@ async function startSdesVisualization() {
     applyHighlight('r2-output', highlightDuration);
     await new Promise(resolve => setTimeout(resolve, delay));
 
+
     // --- Step 6: Final Permutation (IP^-1) ---
     const beforeFinalPerm = round2.fkResult + round2.rightHalfInput; // Output of Round 2 (no swap after last round)
     renderBinary('fp-input', beforeFinalPerm, 4); // Group by 4
@@ -398,4 +430,502 @@ async function startSdesVisualization() {
     renderBinary('result-ciphertext', ciphertext, 4); // Group by 4
     applyHighlight('result-ciphertext', highlightDuration * 2); // Highlight final result longer
     await displayStep('result', 0); // Show result immediately
+}
+
+// --- NEW: Visualize Key Generation Only (User Input) ---
+async function visualizeKeyGenerationOnly() {
+    resetVisualization();
+    const key = document.getElementById('keygen-key').value;
+
+    // Validation
+    if (!/^[01]{10}$/.test(key)) {
+        alert("Key must be 10 binary digits.");
+        return;
+    }
+
+    const delay = 500;
+    const highlightDuration = delay * 0.8;
+
+    // Update title
+    const titleElement = document.getElementById('visualization-title');
+    if (titleElement) {
+        titleElement.textContent = 'Visualization Steps (Key Generation Only)';
+    }
+
+    // --- Key Generation Steps ---
+    renderBinary('kgen-input-key', key, 5);
+    applyHighlight('kgen-input-key', highlightDuration);
+    await displayStep('step-key-generation', delay / 2); // Show only the key gen card
+    const keys = generateKeys(key);
+
+    renderBinary('kgen-p10-output', keys.p10Key, 5);
+    applyHighlight('kgen-p10-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-ls1-left', keys.ls1Left);
+    renderBinary('kgen-ls1-right', keys.ls1Right);
+    applyHighlight('kgen-ls1-left', highlightDuration);
+    applyHighlight('kgen-ls1-right', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-ls1-combined', keys.combinedLS1, 5);
+    applyHighlight('kgen-ls1-combined', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-k1', keys.k1, 4);
+    applyHighlight('kgen-k1', highlightDuration * 1.5);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-ls2-left', keys.ls2Left);
+    renderBinary('kgen-ls2-right', keys.ls2Right);
+    applyHighlight('kgen-ls2-left', highlightDuration);
+    applyHighlight('kgen-ls2-right', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-ls2-combined', keys.combinedLS2, 5);
+    applyHighlight('kgen-ls2-combined', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-k2', keys.k2, 4);
+    applyHighlight('kgen-k2', highlightDuration * 1.5);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    // --- Show Result ---
+    document.getElementById('result-plaintext').innerHTML = 'N/A (Key Gen Only)';
+    renderBinary('result-key', key, 5);
+    document.getElementById('result-ciphertext').innerHTML = `<strong>K1:</strong> <span class="binary-visualization">${keys.k1}</span> | <strong>K2:</strong> <span class="binary-visualization">${keys.k2}</span>`;
+    applyHighlight('result-ciphertext', highlightDuration * 2);
+    await displayStep('result', 0);
+}
+
+// --- NEW: Visualize Encryption with Pre-computed Keys (User Input) ---
+async function visualizeEncryptionWithKeys() {
+    resetVisualization();
+    const plaintext = document.getElementById('encrypt-plaintext').value;
+    const k1 = document.getElementById('encrypt-k1').value;
+    const k2 = document.getElementById('encrypt-k2').value;
+
+    // Validation
+    if (!/^[01]{8}$/.test(plaintext)) {
+        alert("Plaintext must be 8 binary digits.");
+        return;
+    }
+    if (!/^[01]{8}$/.test(k1)) {
+        alert("Subkey K1 must be 8 binary digits.");
+        return;
+    }
+     if (!/^[01]{8}$/.test(k2)) {
+        alert("Subkey K2 must be 8 binary digits.");
+        return;
+    }
+
+    const delay = 500;
+    const highlightDuration = delay * 0.8;
+
+    // Update title
+    const titleElement = document.getElementById('visualization-title');
+    if (titleElement) {
+        titleElement.textContent = 'Visualization Steps (Encryption with Provided Keys)';
+    }
+
+    // --- Step 1: Initial Permutation ---
+    renderBinary('ip-input', plaintext, 4);
+    applyHighlight('ip-input', highlightDuration);
+    await displayStep('step-initial-permutation', delay / 2);
+    const ipResult = permute(plaintext, IP);
+    renderBinary('ip-output', ipResult, 4);
+    applyHighlight('ip-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay / 2));
+
+    // --- Step 3: Round 1 (Using provided K1) ---
+    renderBinary('r1-input', ipResult, 4);
+    applyHighlight('r1-input', highlightDuration);
+    renderBinary('r1-k1', k1, 4); // Use provided k1
+    applyHighlight('r1-k1', highlightDuration);
+    await displayStep('step-round-1', delay / 2);
+    const round1 = fk(ipResult, k1); // Use provided k1
+    // ... (rest of Round 1 visualization as before) ...
+    renderBinary('r1-right-half-input', round1.rightHalfInput);
+    applyHighlight('r1-right-half-input', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-ep-output', round1.epResult, 4);
+    applyHighlight('r1-ep-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-ep-output-xor', round1.epResult, 4);
+    renderBinary('r1-k1-xor', k1, 4); // Use provided k1
+    applyHighlight('r1-ep-output-xor', highlightDuration);
+    applyHighlight('r1-k1-xor', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-xor-k1-output', round1.xorResult, 4);
+    applyHighlight('r1-xor-k1-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-sbox-input', round1.xorResult, 4);
+    applyHighlight('r1-sbox-input', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-s0-output', round1.s0Result);
+    renderBinary('r1-s1-output', round1.s1Result);
+    applyHighlight('r1-s0-output', highlightDuration);
+    applyHighlight('r1-s1-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-sbox-combined', round1.sboxCombined);
+    applyHighlight('r1-sbox-combined', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-p4-output', round1.p4Result);
+    applyHighlight('r1-p4-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-left-half-input', round1.leftHalfInput);
+    renderBinary('r1-p4-output-xor', round1.p4Result);
+    applyHighlight('r1-left-half-input', highlightDuration);
+    applyHighlight('r1-p4-output-xor', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-xor-p4-output', round1.fkResult);
+    applyHighlight('r1-xor-p4-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-output-noswap', round1.fkResult + round1.rightHalfInput, 4);
+    applyHighlight('r1-output-noswap', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+
+    // --- Step 4: Swap ---
+    const beforeSwap = round1.fkResult + round1.rightHalfInput;
+    const afterSwap = round1.rightHalfInput + round1.fkResult;
+    renderBinary('swap-input', beforeSwap, 4);
+    applyHighlight('swap-input', highlightDuration);
+    await displayStep('step-swap', delay / 2);
+    renderBinary('swap-output', afterSwap, 4);
+    applyHighlight('swap-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay / 2));
+
+    // --- Step 5: Round 2 (Using provided K2) ---
+    renderBinary('r2-input', afterSwap, 4);
+    applyHighlight('r2-input', highlightDuration);
+    renderBinary('r2-k2', k2, 4); // Use provided k2
+    applyHighlight('r2-k2', highlightDuration);
+    await displayStep('step-round-2', delay / 2);
+    const round2 = fk(afterSwap, k2); // Use provided k2
+    // ... (rest of Round 2 visualization as before) ...
+    renderBinary('r2-right-half-input', round2.rightHalfInput);
+    applyHighlight('r2-right-half-input', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-ep-output', round2.epResult, 4);
+    applyHighlight('r2-ep-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-ep-output-xor', round2.epResult, 4);
+    renderBinary('r2-k2-xor', k2, 4); // Use provided k2
+    applyHighlight('r2-ep-output-xor', highlightDuration);
+    applyHighlight('r2-k2-xor', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-xor-k2-output', round2.xorResult, 4);
+    applyHighlight('r2-xor-k2-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-sbox-input', round2.xorResult, 4);
+    applyHighlight('r2-sbox-input', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-s0-output', round2.s0Result);
+    renderBinary('r2-s1-output', round2.s1Result);
+    applyHighlight('r2-s0-output', highlightDuration);
+    applyHighlight('r2-s1-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-sbox-combined', round2.sboxCombined);
+    applyHighlight('r2-sbox-combined', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-p4-output', round2.p4Result);
+    applyHighlight('r2-p4-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-left-half-input', round2.leftHalfInput);
+    renderBinary('r2-p4-output-xor', round2.p4Result);
+    applyHighlight('r2-left-half-input', highlightDuration);
+    applyHighlight('r2-p4-output-xor', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-xor-p4-output', round2.fkResult);
+    applyHighlight('r2-xor-p4-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-output', round2.fkResult + round2.rightHalfInput, 4);
+    applyHighlight('r2-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+
+    // --- Step 6: Final Permutation (IP^-1) ---
+    const beforeFinalPerm = round2.fkResult + round2.rightHalfInput;
+    renderBinary('fp-input', beforeFinalPerm, 4);
+    applyHighlight('fp-input', highlightDuration);
+    await displayStep('step-final-permutation', delay / 2);
+    const ciphertext = permute(beforeFinalPerm, IP_inv);
+    renderBinary('fp-output', ciphertext, 4);
+    applyHighlight('fp-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay / 2));
+
+    // --- Show Result ---
+    renderBinary('result-plaintext', plaintext, 4);
+    document.getElementById('result-key').innerHTML = `<strong>K1:</strong> <span class="binary-visualization">${k1}</span> | <strong>K2:</strong> <span class="binary-visualization">${k2}</span>`;
+    renderBinary('result-ciphertext', ciphertext, 4);
+    applyHighlight('result-ciphertext', highlightDuration * 2);
+    await displayStep('result', 0);
+}
+
+// --- Example 1: Key Generation Only ---
+async function visualizeExample1() {
+    resetVisualization();
+    const key = "1010000010";
+    const expected_k1 = "10100100";
+    const expected_k2 = "01000011";
+
+    const delay = 500;
+    const highlightDuration = delay * 0.8;
+
+    // Update title
+    const titleElement = document.getElementById('visualization-title');
+    if (titleElement) {
+        titleElement.textContent = 'Example 1: Key Generation for k = 1010000010';
+    }
+
+    // --- Key Generation Steps ---
+    renderBinary('kgen-input-key', key, 5);
+    applyHighlight('kgen-input-key', highlightDuration);
+    await displayStep('step-key-generation', delay / 2); // Show only the key gen card
+    const keys = generateKeys(key);
+
+    renderBinary('kgen-p10-output', keys.p10Key, 5);
+    applyHighlight('kgen-p10-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-ls1-left', keys.ls1Left);
+    renderBinary('kgen-ls1-right', keys.ls1Right);
+    applyHighlight('kgen-ls1-left', highlightDuration);
+    applyHighlight('kgen-ls1-right', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-ls1-combined', keys.combinedLS1, 5);
+    applyHighlight('kgen-ls1-combined', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-k1', keys.k1, 4);
+    applyHighlight('kgen-k1', highlightDuration * 1.5);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-ls2-left', keys.ls2Left);
+    renderBinary('kgen-ls2-right', keys.ls2Right);
+    applyHighlight('kgen-ls2-left', highlightDuration);
+    applyHighlight('kgen-ls2-right', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-ls2-combined', keys.combinedLS2, 5);
+    applyHighlight('kgen-ls2-combined', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('kgen-k2', keys.k2, 4);
+    applyHighlight('kgen-k2', highlightDuration * 1.5);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    // --- Show Result ---
+    // Display K1 and K2 in the result card for clarity
+    document.getElementById('result-plaintext').innerHTML = 'N/A (Key Gen Only)';
+    renderBinary('result-key', key, 5);
+    document.getElementById('result-ciphertext').innerHTML = `<strong>K1:</strong> ${keys.k1} | <strong>K2:</strong> ${keys.k2}`;
+    applyHighlight('result-ciphertext', highlightDuration * 2);
+    await displayStep('result', 0);
+
+    // Optional: Verify against expected results
+    console.log(`Example 1: Calculated K1=${keys.k1}, K2=${keys.k2}`);
+    if (keys.k1 === expected_k1 && keys.k2 === expected_k2) {
+        console.log("Example 1: Results match expected values.");
+    } else {
+        console.warn("Example 1: Results DO NOT match expected values!");
+    }
+}
+
+// --- Example 2: Encryption with Given Keys ---
+async function visualizeExample2() {
+    resetVisualization();
+    const plaintext = "11011001";
+    const k1 = "10100010";
+    const k2 = "10011001";
+    const expected_ciphertext = "11101001";
+
+    const delay = 500;
+    const highlightDuration = delay * 0.8;
+
+    // Update title
+    const titleElement = document.getElementById('visualization-title');
+    if (titleElement) {
+        titleElement.textContent = 'Example 2: Encrypt M=11011001 with K1=10100010, K2=10011001';
+    }
+
+    // --- Step 1: Initial Permutation ---
+    renderBinary('ip-input', plaintext, 4);
+    applyHighlight('ip-input', highlightDuration);
+    await displayStep('step-initial-permutation', delay / 2);
+    const ipResult = permute(plaintext, IP);
+    renderBinary('ip-output', ipResult, 4);
+    applyHighlight('ip-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay / 2));
+
+    // --- Step 3: Round 1 (Using provided K1) ---
+    renderBinary('r1-input', ipResult, 4);
+    applyHighlight('r1-input', highlightDuration);
+    renderBinary('r1-k1', k1, 4); // Use provided k1
+    applyHighlight('r1-k1', highlightDuration);
+    await displayStep('step-round-1', delay / 2);
+    const round1 = fk(ipResult, k1); // Use provided k1
+    renderBinary('r1-right-half-input', round1.rightHalfInput);
+    applyHighlight('r1-right-half-input', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-ep-output', round1.epResult, 4);
+    applyHighlight('r1-ep-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-ep-output-xor', round1.epResult, 4);
+    renderBinary('r1-k1-xor', k1, 4); // Use provided k1
+    applyHighlight('r1-ep-output-xor', highlightDuration);
+    applyHighlight('r1-k1-xor', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-xor-k1-output', round1.xorResult, 4);
+    applyHighlight('r1-xor-k1-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-sbox-input', round1.xorResult, 4);
+    applyHighlight('r1-sbox-input', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-s0-output', round1.s0Result);
+    renderBinary('r1-s1-output', round1.s1Result);
+    applyHighlight('r1-s0-output', highlightDuration);
+    applyHighlight('r1-s1-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-sbox-combined', round1.sboxCombined);
+    applyHighlight('r1-sbox-combined', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-p4-output', round1.p4Result);
+    applyHighlight('r1-p4-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-left-half-input', round1.leftHalfInput);
+    renderBinary('r1-p4-output-xor', round1.p4Result);
+    applyHighlight('r1-left-half-input', highlightDuration);
+    applyHighlight('r1-p4-output-xor', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-xor-p4-output', round1.fkResult);
+    applyHighlight('r1-xor-p4-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r1-output-noswap', round1.fkResult + round1.rightHalfInput, 4);
+    applyHighlight('r1-output-noswap', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    // --- Step 4: Swap ---
+    const beforeSwap = round1.fkResult + round1.rightHalfInput;
+    const afterSwap = round1.rightHalfInput + round1.fkResult;
+    renderBinary('swap-input', beforeSwap, 4);
+    applyHighlight('swap-input', highlightDuration);
+    await displayStep('step-swap', delay / 2);
+    renderBinary('swap-output', afterSwap, 4);
+    applyHighlight('swap-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay / 2));
+
+    // --- Step 5: Round 2 (Using provided K2) ---
+    renderBinary('r2-input', afterSwap, 4);
+    applyHighlight('r2-input', highlightDuration);
+    renderBinary('r2-k2', k2, 4); // Use provided k2
+    applyHighlight('r2-k2', highlightDuration);
+    await displayStep('step-round-2', delay / 2);
+    const round2 = fk(afterSwap, k2); // Use provided k2
+    renderBinary('r2-right-half-input', round2.rightHalfInput);
+    applyHighlight('r2-right-half-input', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-ep-output', round2.epResult, 4);
+    applyHighlight('r2-ep-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-ep-output-xor', round2.epResult, 4);
+    renderBinary('r2-k2-xor', k2, 4); // Use provided k2
+    applyHighlight('r2-ep-output-xor', highlightDuration);
+    applyHighlight('r2-k2-xor', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-xor-k2-output', round2.xorResult, 4);
+    applyHighlight('r2-xor-k2-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-sbox-input', round2.xorResult, 4);
+    applyHighlight('r2-sbox-input', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-s0-output', round2.s0Result);
+    renderBinary('r2-s1-output', round2.s1Result);
+    applyHighlight('r2-s0-output', highlightDuration);
+    applyHighlight('r2-s1-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-sbox-combined', round2.sboxCombined);
+    applyHighlight('r2-sbox-combined', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-p4-output', round2.p4Result);
+    applyHighlight('r2-p4-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-left-half-input', round2.leftHalfInput);
+    renderBinary('r2-p4-output-xor', round2.p4Result);
+    applyHighlight('r2-left-half-input', highlightDuration);
+    applyHighlight('r2-p4-output-xor', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-xor-p4-output', round2.fkResult);
+    applyHighlight('r2-xor-p4-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    renderBinary('r2-output', round2.fkResult + round2.rightHalfInput, 4);
+    applyHighlight('r2-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay));
+
+    // --- Step 6: Final Permutation (IP^-1) ---
+    const beforeFinalPerm = round2.fkResult + round2.rightHalfInput;
+    renderBinary('fp-input', beforeFinalPerm, 4);
+    applyHighlight('fp-input', highlightDuration);
+    await displayStep('step-final-permutation', delay / 2);
+    const ciphertext = permute(beforeFinalPerm, IP_inv);
+    renderBinary('fp-output', ciphertext, 4);
+    applyHighlight('fp-output', highlightDuration);
+    await new Promise(resolve => setTimeout(resolve, delay / 2));
+
+    // --- Show Result ---
+    renderBinary('result-plaintext', plaintext, 4);
+    document.getElementById('result-key').innerHTML = `<strong>K1:</strong> ${k1} | <strong>K2:</strong> ${k2}`;
+    renderBinary('result-ciphertext', ciphertext, 4);
+    applyHighlight('result-ciphertext', highlightDuration * 2);
+    await displayStep('result', 0);
+
+    // Optional: Verify against expected results
+    console.log(`Example 2: Calculated Ciphertext=${ciphertext}`);
+    if (ciphertext === expected_ciphertext) {
+        console.log("Example 2: Result matches expected value.");
+    } else {
+        console.warn("Example 2: Result DOES NOT match expected value!");
+    }
 }
