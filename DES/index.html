@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<link href="./pointer.css" rel="stylesheet">
+<script src="./pointer.js"></script>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="../images/favicon.png" type="">
+
+  <title> Xipher </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="../css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="../css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="../css/responsive.css" rel="stylesheet" />
+<script>
+init_pointer();
+init_pointer({
+  pointerColor: "#222"
+})
+init_pointer({
+  pointerColor: "#222",
+  ringSize: 15,
+  ringClickSize: 10
+})
+    
+</script>
+        <title>DES Encryption and Visualizer</title>
+    <style>
+        .container{
+            width: auto;
+            padding: 20px;
+            margin: 50px auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .con{
+            width: auto;
+            padding: 20px;
+            margin: 200px auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-bottom: 0px;
+        }
+
+        h1{
+            font-family: "Raleway", sans-serif;
+            color:white;
+        }
+
+        p{
+            font-family: "Raleway", sans-serif;
+            color:#000000;
+        }
+
+        h4{
+            font-family: "Raleway", sans-serif;
+            color:#000000;
+        }
+
+        body {
+            background-color: #231a6f;
+            height: 70vh;
+            background-size: cover;
+        }
+    
+        .box{
+            width: 250px;
+            height: 150px;
+            background: white;
+            margin: 0px 10px;
+            border-radius: 20px;
+            transition: 1s;
+            text-align: center;
+            padding-left:10px;
+            padding-right:10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box1{
+            width: 250px;
+            height: 150px;
+            background: white;
+            margin: 0px 10px;
+            border-radius: 20px;
+            transition: 1s;
+            text-align: center;
+            padding-left:10px;
+            padding-right:10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;    
+        }
+
+        .b{
+            width: 50px;
+        }
+    
+
+        .box:hover{
+            transform: scale(1.3);
+            background: white;
+            z-index: 2;
+            box-shadow: 2px 2px 2px grey;
+            
+        }
+
+        .box1:hover{
+            transform: scale(1.3);
+            background: white;
+            z-index: 2;
+            box-shadow: 2px 2px 2px grey;
+            
+        }
+
+
+        .box .comment {
+            display: none;
+        }
+
+        .box:hover .replies {
+            display: none;
+        }
+
+        .box:hover .comment {
+            display: inline;
+        }
+
+        .box1 .comment {
+            display: none;
+        }
+
+        .box1:hover .replies {
+            display: none;
+        }
+
+        .box1:hover .comment {
+            display: inline;
+        }
+    </style>
+    </head>
+
+    <body class="sub_page">
+
+        <div class="hero_area">
+      
+          <div class="hero_bg_box">
+            <div class="bg_img_box">
+              <img src="images/hero-bg.png" alt="">
+            </div>
+          </div>
+      
+          <!-- header section strats -->
+          <header class="header_section">
+            <div class="container-fluid">
+              <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="index.html">
+                  <span>
+                    Xipher
+                  </span>
+                </a>
+      
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class=""> </span>
+                </button>
+      
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav  ">
+                    <li class="nav-item ">
+                      <a class="nav-link" href="../index.html">Home </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="../index.html#Aboutsec"> About</a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="../algorthims.html">Algorithms <span class="sr-only">(current)</span> </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="../Help.html">Help</a>
+                    </li>
+                    
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </header>
+          <!-- end header section -->
+    <div class="con">
+        <h1 style="font-size:4vw">DES VISUALIZER AND ENCRYPTION</h1>
+        </div>
+    <div class="container">
+        <div class="box1 "  onclick="location.href='visual.html'">
+            <span class="replies"><h4>DES VISUALIZER</h4></span>
+            <span class="comment">
+                <h4>DES VISUALIZER</h4>
+                <p>Understand how DES works in detail</p>
+            </span>
+        </div>
+        <div class="b"></div>
+        <div class="box " onclick="location.href='Rounds.html'">
+            <span class="replies"><h4>DES ENCRYPTION</h4></span>
+            <span class="comment">
+                <h4>DES ENCRYPTION</h4>
+                <p>Perform DES Encryption with hex value inputs</p>
+            </span>
+    </div>
+    </div>
+</body>
+</html>

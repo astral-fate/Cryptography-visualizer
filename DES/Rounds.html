@@ -1,0 +1,369 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="Rounds.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+      <title>DES = Data Encryption Standard</title>
+      <style>
+        .subhead {
+        top: 11%; 
+        height: 100px; 
+        width: 600px; 
+        
+        color: black; }
+      
+      a.one:link {color:#190d4c;}
+      a.one:any-link {color:#190d4c;}
+      
+      a.one:hover {color:#00d9ff;}
+      </style>
+
+      
+      <meta charset="UTF-8">
+      <meta name="authoring-tool" content="Adobe_Animate_CC">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>DES Visualizer</title>
+      <!-- write your code here -->
+      <!---->
+      <script src="./js/bit-array-typed.js"></script>
+      <script src="./js/des.js"></script>
+      <script src="./js/jquery.js"></script>
+      <script src="./js/bootstrap.min.js"></script>
+      <script src="./js/application.js"></script>
+      <style>
+        #animation_container {
+          /*position:absolute;*/
+          margin:auto;
+          /*left:0;right:0;
+          top:0;bottom:0;*/
+        }
+
+        a.one:link {color:#190d4c;}
+
+a.one:hover {color:#00d9ff;}
+      </style>
+
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Function to show tooltip
+        function showTooltip(text) {
+            var tooltip = $('#global-tooltip');
+            tooltip.text(text);
+            tooltip.css('opacity', 1);
+        }
+
+        // Function to hide tooltip
+        function hideTooltip() {
+            var tooltip = $('#global-tooltip');
+            tooltip.css('opacity', 0);
+        }
+
+        // Hover event for each table cell
+        $('#data-table td').hover(
+            function () {
+                var tooltipText = $(this).data('tooltip');
+                showTooltip(tooltipText);
+            },
+            function () {
+                hideTooltip();
+            }
+        );
+    });
+</script>
+
+  <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+  <script>
+  function LoadGFonts(families) {				
+        var googleObject = {type: "Google", loadedFonts: 0, totalFonts: families.length, callOnLoad: lib.gfontAvailable};				
+        for(var i =0; i < families.length; i++)				
+              isFontAvailable(gFontsFamilies[i], googleObject);				
+  }
+  function isFontAvailable(font, obj) {				
+        var timeOut = 5000;				
+        var delay = 200;				
+        var interval = 0;				
+        var timeElapsed = 0;				
+        function checkFont() {				
+              var node = document.createElement("span");				
+              node.innerHTML = "giItT1WQy@!-/#";				
+              node.style.position      = "absolute";				
+              node.style.left          = "-1000px";				
+              node.style.top           = "-1000px";				
+              node.style.fontSize      = "300px";				
+              node.style.fontFamily    = "sans-serif";				
+              node.style.fontVariant   = "normal";				
+              node.style.fontStyle     = "normal";				
+              node.style.fontWeight    = "normal";				
+              node.style.letterSpacing = "0";				
+              document.body.appendChild(node);				
+              var width = node.offsetWidth;				
+              node.style.fontFamily = font+","+node.style.fontFamily;				
+              var returnVal = false;				
+              if((node && node.offsetWidth != width) || timeElapsed >=timeOut) {				
+                    obj.loadedFonts++;				
+                    if(interval)				
+                          clearInterval(interval);				
+                    obj.callOnLoad(font, obj.totalFonts);				
+                    returnVal = true;				
+              }				
+              if(node) {				
+                    node.parentNode.removeChild(node);				
+                    node = null;				
+              }				
+              timeElapsed += delay;				
+              return returnVal;				
+        }				
+        if(!checkFont()) {				
+              interval = setInterval(checkFont, delay);				
+        }				
+  }
+  </script>
+  <script>
+        var gFontsFamilies = ["Inconsolata","Open Sans"];
+  </script>
+  <style>
+  @font-face {
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Inconsolata Regular'), local('Inconsolata-Regular'), url(https://fonts.gstatic.com/s/inconsolata/v15/BjAYBlHtW3CJxDcjzrnZCIbN6UDyHWBl620a-IRfuBk.woff) format('woff');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  }
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  }
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  }</style>
+  <script src="index.js?1481665854605"></script>
+      <script>
+      var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+      function init() {
+          canvas = document.getElementById("canvas");
+          anim_container = document.getElementById("animation_container");
+          dom_overlay_container = document.getElementById("dom_overlay_container");
+        try {
+              if(!(typeof gFontsFamilies === 'undefined' || gFontsFamilies === null))
+                    LoadGFonts(gFontsFamilies);		
+              if(!(typeof totalTypekitFonts === 'undefined' || totalTypekitFonts === null)) {
+                    var typekitObject = {type: 'Typekit', loadedFonts: 0, totalFonts: totalTypekitFonts, callOnLoad: lib.tfontAvailable};		
+                    Typekit.load({
+                    async: true,
+                    'fontactive': function(family) {
+                          isFontAvailable(family, typekitObject);
+                          }
+                    });
+              }
+        } catch(e) {};
+        handleComplete();
+      }
+  function handleComplete() {
+          //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+        exportRoot = new lib.DESVisualizer();
+        stage = new createjs.Stage(canvas);
+        stage.addChild(exportRoot);
+        stage.enableMouseOver();	
+          //Registers the "tick" event listener.
+          fnStartAnimation = function() {
+              createjs.Ticker.setFPS(lib.properties.fps);
+              createjs.Ticker.addEventListener("tick", stage);
+        }	    
+          //Code to support hidpi screens and responsive scaling.
+        function makeResponsive(isResp, respDim, isScale, scaleType) {		
+              var lastW, lastH, lastS=1;		
+              window.addEventListener('resize', resizeCanvas);		
+              resizeCanvas();		
+              function resizeCanvas() {			
+                    var w = lib.properties.width, h = lib.properties.height;			
+                    var iw = window.innerWidth, ih=window.innerHeight;			
+                    var pRatio = window.devicePixelRatio || 1, xRatio=iw/w, yRatio=ih/h, sRatio=1;			
+                    if(isResp) {                
+                          if((respDim=='width'&&lastW==iw) || (respDim=='height'&&lastH==ih)) {                    
+                                sRatio = lastS;                
+                          }				
+                          else if(!isScale) {					
+                                if(iw<w || ih<h)						
+                                      sRatio = Math.min(xRatio, yRatio);				
+                          }				
+                          else if(scaleType==1) {					
+                                sRatio = Math.min(xRatio, yRatio);				
+                          }				
+                          else if(scaleType==2) {					
+                                sRatio = Math.max(xRatio, yRatio);				
+                          }			
+                    }			
+                    canvas.width = w*pRatio*sRatio;			
+                    canvas.height = h*pRatio*sRatio;
+                    canvas.style.width = dom_overlay_container.style.width = anim_container.style.width =  w*sRatio+'px';				
+                    canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h*sRatio+'px';
+                    stage.scaleX = pRatio*sRatio;			
+                    stage.scaleY = pRatio*sRatio;			
+                    lastW = iw; lastH = ih; lastS = sRatio;		
+              }
+        }
+        makeResponsive(true,'both',true,1);	
+        fnStartAnimation();
+  }
+      </script>
+      <!-- write your code here -->
+      <script type="text/javascript">
+          $(document).ready(init);
+      </script>
+      <link href="./css/bootstrap.min.css" rel="stylesheet">
+      <link href="./css/application.css" rel="stylesheet">
+  
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+  
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  
+  <!-- font awesome style -->
+  <link href="../css/font-awesome.min.css" rel="stylesheet" />
+  
+  <!-- Custom styles for this template -->
+  <link href="../css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="../css/responsive.css" rel="stylesheet" />
+  
+  
+   
+</head>
+<body >
+  <div class="hero_area">
+      
+   
+
+    <!-- header section strats -->
+    <header style="background-color: #231a6f;" class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="../index.html">
+            <span>
+              Xipher
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 15px;">
+            <ul class="navbar-nav  ">
+              <li class="nav-item ">
+                <a class="nav-link" href="../index.html">Home </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html#Aboutsec"> About</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../algorthims.html">Algorithms <span class="sr-only">(current)</span> </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../Help.html">Help</a>
+              </li>
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+      <!-- header section strats -->
+      <header style="background-color: #ffffff;" class="subhead">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+    
+          
+            <a  class="one" href="../Symmetric ciphers/index.html"><h6  style="font-size: 15px;">Symmetric</h6></a>
+            <h5 style="font-size: 20px;">&emsp;➜&emsp;</h5>
+            <a class="one" href="../Block Cipher/index.html"><h6 style="font-size: 15px;">Block</h6></a>
+            <h5 style="font-size: 20px;">&emsp;➜&emsp;</h5>
+            <a class="one" href="./index.html" ><h6 style="font-size: 15px;">DES</h6></a>
+          
+           
+    
+    
+          </nav></div></header>
+
+    
+        <header id="mainHeader">
+            <h1>DES Visualizer</h1>
+           
+
+            <form id="jsMainForm" action="#">
+                <div class="inputSection">
+                    <label for="jsMessageInput" class="primaryLabel">Input</label>
+                    <div class="inputs">
+                        <div class="upperRow">
+                            <input id="jsMessageInput" type="text" class="form-control" placeholder="Input" maxlength="8" name="messageValue">
+                            <a href="#" id="jsRandomMessage">Random</a>
+                        </div>
+                        <label>
+                            <input type="radio" name="messageType" value="ascii" checked>
+                            ASCII
+                        </label>
+                        <label>
+                            <input type="radio" name="messageType" value="hex">
+                            Hex
+                        </label>
+                    </div>
+                </div>
+                <div class="inputSection">
+                    <label for="jsKeyInput" class="primaryLabel">Key</label>
+                    <div class="inputs">
+                        <div class="upperRow">
+                            <input id="jsKeyInput" type="text" class="form-control" placeholder="Key" maxlength="8" name="keyValue">
+                            <a href="#" id="jsRandomKey">Random</a>
+                        </div>
+                        <label>
+                            <input type="radio" name="keyType" value="ascii" checked>
+                            ASCII
+                        </label>
+                        <label>
+                            <input type="radio" name="keyType" value="hex">
+                            Hex
+                        </label>
+                    </div>
+                </div>
+                <div class="buttonWrapper">
+                    <!--<button type="button" class="btn btn-default">?</button>-->
+                    <button style=" padding: 8px 20px;
+                    margin: 10px;
+                    cursor: pointer;
+                    color: #ffff;
+                    border: none;
+                    border-radius: 5px;
+                    transition: background-color 0.3s ease; 
+                    background-color: #231a6f;" type="submit" class="btn btn-success">Encrypt</button>
+                </div>
+            </form>
+            
+        </header>
+
+        
+            <!--original was 1200width for all and 650highet -->
+	<div id="animation_container" style="background-color:#231a6f; width:800px; height:250px">
+		<canvas id="canvas" width="800" height="250" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas><!--هنا اللون الابيض بالبدايه-->
+		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:800px; height:250px; position: absolute; left: 0px; top: 0px; display: block;">
+		</div>
+	</div>
+</body>
+</html>

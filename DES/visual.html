@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="visual.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="../images/favicon.png" type="">
+
+  <title> Xipher </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="../css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="../css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+<script type="text/javascript">
+		
+    var opacity =0;
+    var intervalID=0;
+    function fadeOut()
+    {
+        intervalID=setInterval(hide,50);
+    }
+    function fadeIn()
+    {
+        intervalID=setInterval(show,50);
+    }
+    function show()
+    {
+        var img = document.getElementById("img1");
+        opacity = Number(window.getComputedStyle(img).getPropertyValue("opacity"));
+        if(opacity<1)
+        {
+            opacity=opacity+0.1;
+            img.style.opacity=opacity;
+            console.log(opacity);
+        }
+        else
+        {
+            clearInterval(intervalID);
+        }
+    }
+    function hide()
+    {
+        var img = document.getElementById("img1");
+        opacity = Number(window.getComputedStyle(img).getPropertyValue("opacity"));
+        if(opacity>0)
+        {
+            opacity=opacity-0.1;
+            img.style.opacity=opacity;
+            console.log(opacity);
+        }
+        else
+        {
+            clearInterval(intervalID);
+        }
+    }
+
+var dir='right';
+
+function reset1(){
+clearTimeout(my_time);
+document.getElementById('i1').style.left= "500px";
+document.getElementById('i1').style.top= "100px";
+document.getElementById("msg").innerHTML="";
+}
+
+function disp(){
+var step=5; // Change this step value
+//alert(dir);
+
+var y=document.getElementById('i1').offsetTop;
+var x=document.getElementById('i1').offsetLeft;
+if(x >= 1000 ){
+dir = 'left';
+}
+if(x <= 500 ){
+dir = 'right';
+}
+
+if(dir=='right'){x= x +step;}
+else{x=x - step;}
+document.getElementById('i1').style.left= x + "px"; // horizontal  movment
+//////////////////////
+}
+function timer(){
+disp();
+var y=document.getElementById('i1').offsetTop;
+var x=document.getElementById('i1').offsetLeft;
+document.getElementById("msg").innerHTML="X: " + x  + " Y : " + y
+my_time=setTimeout('timer()',10);
+}
+var i = 0;
+var txt = 'HOW DOES AES WORK?'; /* The text */
+var speed = 50; /* The speed/duration of the effect in milliseconds */
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("demo").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+    </script>
+
+        <title>AES Visualizer</title>
+     </head>
+
+    <body >
+
+        <div class="hero_area">
+      
+          <div class="hero_bg_box">
+            <div class="bg_img_box">
+            
+            </div>
+          </div>
+      
+          <!-- header section strats -->
+          <header style="background-color: #231a6f;" class="header_section">
+            <div class="container-fluid">
+              <nav class="navbar navbar-expand-lg custom_nav-container ">
+                <a class="navbar-brand" href="index.html">
+                  <span>
+                    Xipher
+                  </span>
+                </a>
+      
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class=""> </span>
+                </button>
+      
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav  ">
+                    <li class="nav-item ">
+                      <a class="nav-link" href="index.html">Home </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="./index.html#Aboutsec"> About</a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="./algorthims.html">Algorithms <span class="sr-only">(current)</span> </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="./Help.html">Help</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Back</a>
+                      </li>
+                    
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </header>
+          <!-- end header section -->
+    <br>
+    <div class="con">
+        <h1 style="font-size:4vw" class="anim-typewriter line-1">DES VISUALIZER </h1>
+    </div>
+    <div class="pk">
+    <p>The DES Encryption algorithm (also known as Data Encryption Standard) is a symmetric block cipher algorithm with a block/chunk size of 64 bits. <br>
+        It converts these individual blocks using key of 56 bits. Once it encrypts these blocks, it joins them together to form the ciphertext.</p>
+    </div>
+    <br>
+    <div class="pk">
+    <p>To understand the way DES works, you first need to learn how it transmits information between multiple steps. <br>
+    Since a single block is 54 bytes, a 4x4 matrix holds the data in a single block, 
+    with each cell holding a single byte of information.</p>
+    </div>
+    <div class="container">
+    <div class="rows">
+    <div class="d-flex flex-column">
+        <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DATA</h2>
+        <div class="d-flex flex-row">
+        <div class="box">D</div>
+        <div class="box">A</div>
+        <div class="box">T</div>
+        <div class="box">A</div>
+        </div>
+        <div class="d-flex flex-row">
+        <div class="box">D</div>
+        <div class="box">A</div>
+        <div class="box">T</div>
+        <div class="box">A</div>
+        </div>
+        <div class="d-flex flex-row">
+        <div class="box">D</div>
+        <div class="box">A</div>
+        <div class="box">T</div>
+        <div class="box">A</div>
+        </div>
+        <div class="d-flex flex-row">
+        <div class="box">D</div>
+        <div class="box">A</div>
+        <div class="box">T</div>
+        <div class="box">A</div>
+        </div>
+        </div>
+        <div class="b"></div>
+    <div class="d-flex flex-column">
+        <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KEY</h2>
+        <div class="d-flex flex-row">
+        <div class="box">K</div>
+        <div class="box">E</div>
+        <div class="box">Y</div>
+        <div class="box">S</div>
+        </div>
+        <div class="d-flex flex-row">
+        <div class="box">K</div>
+        <div class="box">E</div>
+        <div class="box">Y</div>
+        <div class="box">S</div>
+        </div>
+        <div class="d-flex flex-row">
+        <div class="box">K</div>
+        <div class="box">E</div>
+        <div class="box">Y</div>
+        <div class="box">S</div>
+        </div>
+        <div class="d-flex flex-row">
+        <div class="box">K</div>
+        <div class="box">E</div>
+        <div class="box">Y</div>
+        <div class="box">S</div>
+        </div>
+        </div>
+    </div>
+    <br/><br/>
+</div>
+
+<div class="con">
+    <h3>Let's explore the DES Encryption Rounds... </h3>
+</div>
+
+<div class="cont">
+    <h1 class="level-1 rectangle">DES ENCRYPTION STEPS</h1>
+    <ol class="level-2-wrapper">
+        <li>
+            <h2 class="level-2 rectangle">KEYS</h2>
+            <ol class="level-1-wrapper">
+                <li>
+                    <h3 class="level-3 rectangle">Generate 16 Round Keys</h3>
+                </li>
+            </ol>
+        </li>
+        <li>
+            <h2 class="level-2 rectangle">INPUT BLOCK</h2>
+            <ol class="level-1-wrapper">
+                <li>
+                    <h3 class="level-2 rectangle">Initial Permutation</h3>
+                </li>
+                <li>
+                    <h3 class="level-3 rectangle">Rounds (1 to 16)</h3>
+                    <ol class="level-4-wrapper">
+                        <li>
+                            <h4 class="level-4 rectangle">Substitution (S-box)</h4>
+                        </li><br>
+                        <li>
+                            <h4 class="level-4 rectangle">Permutation (P-box)</h4>
+                        </li><br>
+                        <li>
+                            <h4 class="level-4 rectangle">XOR with Round Key</h4>
+                        </li>
+                    </ol>
+                </li><br>
+                <li>
+                    <h3 class="level-3 rectangle">Final Permutation</h3>
+                </li>
+            </ol>
+        </li>
+    </ol>
+</div>
+
+
+  <br/><br/>
+
+<div class="con">
+    <h1>STEPS IN DES ROUNDS</h1>
+</div>
+<br>
+<div class="pk">
+    <h3>SUB BYTES</h3>
+</div>
+<div class="pk">
+    <p> The hexadecimal text is mapped with a <a href="https://en.wikipedia.org/wiki/Data_Encryption_Standard#S-boxes">DES substitution box (S-Box)</a> to generate new values i.e, creating confusion.
+    </p>
+</div>
+
+<img src="../images/OIP.jpeg" alt="DES S-box image" style="width: 500px; height: 600;display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;">
+<img src="../images/Capture.PNG" alt="DES S-box image" style="height: 250px; width: 500px; display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;">
+
+        <br><br>
+   <
+
+        <div class="pk">    
+            <p>Voila! We are done with the explanation for how DES works.
+            </p></div>  
+            <div class="pk">    
+                <p>You can explore the DES encryption to see how DES works in real life.<br>
+                    Give your own input and key and see how the magic works with your own eyes!!
+                </p></div>  
+                <div class="text-center d-flex flex-row justify-content-center">
+                    <button style="margin-right:20px" onclick="location.href='Rounds.html'">DES Encryption</button>
+                    <!--<button onclick="location.href='Final.html' ; save()">Complete Encryption</button>-->
+                </div>
+<!--<button onclick="fadeIn()" id="btnStop">Fade In</button> <br/><br/>-->
+    <!--<button onclick="fadeOut() , typeWriter()" id="btnAdd">Fade Out</button>-->
+</body>
+</html>
